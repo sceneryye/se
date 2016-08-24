@@ -1,0 +1,74 @@
+</br>
+<div class="container">
+  <div class="row">
+  <!-- carousel-->
+  <%= render 'carousel' %>
+  <!-- carousel-->
+
+</div>
+</div>
+
+<div class="container">
+  <div class="row">
+   <!-- block categories -->
+   <div class="block-categories kt-owl-carousel" data-margin="30" data-loop="true" data-nav="true" data-responsive='{"0":{"items":1},"600":{"items":3},"768":{"items":2},"1000":{"items":3},"1200":{"items":4}}'>
+    <%Ecstore::Good.limit(4).each do |goods|%>
+    <div class="block3 parent">
+     <div class="block-head">
+       <%=link_to good_path(goods.bn),:target=>"_blank" do%>
+        <%=truncate2(goods.name,:length=>12)%>
+       <%end%>
+    </div>
+    <div class="block-inner">
+      <%=link_to good_path(goods.bn),:target=>"_blank" do%>
+          <%=image_tag goods.medium_pic,:alt=>goods.name%>
+      <%end%>
+      <div class="sub-cat">
+       <ul>
+         <li>
+
+          <%=goods.name%>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<%end%>
+</div>
+
+</div>
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('.describe-show').hover(function(){
+      $(this).mouseover(function(){
+        $(this).find('.product-slide-up').stop(true, true).slideDown(400);
+      })
+      $(this).mouseout(function(){
+        $(this).find('.product-slide-up').stop(true, true).slideUp(200);
+      })
+    })
+  })
+
+</script>
+<style type="text/css">
+  .product-thumb {
+    position: absolute;
+  }
+
+  .product-slide-up {
+    position: absolute;
+    bottom: 0;
+    background-color: rgb(27, 209, 114);
+    color: white;
+    margin: 0 auto;
+    z-index: 9999;
+    display: none;
+    padding: 10px;
+    width: 150px;
+
+  }
+</style>

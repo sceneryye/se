@@ -1,0 +1,32 @@
+<%#=render "shared/metable", :resource=>@page%>
+
+
+<div id="position">
+  <div class="container">
+    <div class="current_pos">当前位置 ：</div>
+    <ul class="position-list">
+      <li><a href="http://www.scnc-sh.com">首页</a> <span class="divider">/</span></li>
+
+              <li>
+                <%=link_to @page.page_category.name,'#' if @page.page_category%>
+                <span class="divider">/</span>
+              </li>
+              <li>
+                <%=@page.title%>
+              </li>
+    </ul>
+   </div>
+</div>
+<%if params[:platform]!='mobile'%>
+<div class="products clearfix">
+
+<%=render 'menu_tree'%>
+	<div class="right">
+
+		<%=@page.body.html_safe%>
+		<br><br>
+	</div>
+</div>
+<%else%>
+<%=@page.body.html_safe%>
+<%end%>

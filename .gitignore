@@ -1,0 +1,10 @@
+tmp/**/*
+tmp/*
+log/*.log
+Gemfile.lock
+.DS_Store
+config/ecstore.yml
+config/database.yml
+lib/maowei_cert/*
+*.[.DS_Store]
+Find Results

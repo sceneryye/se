@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="title">
+    <h3>我的客户</h3>
+  </div>
+  
+  <table class="table table-striped table-hover table-responsive">
+    <tr class="">
+
+      <th class="headimg">
+        <div>
+          <h4>客户头像</h4>
+        </div>
+      </th>
+      <th>
+        <div class="">
+          <h4>客户名称</h4>
+        </div>
+      </th>
+      <th>
+        <div class="">
+          <h4>红包</h4>
+        </div>
+      </th>
+    </tr>
+
+    <% @members.each_with_index do |member, index| %>
+    <% user = Ecstore::User.where(:member_id => member.account_id).first %>
+
+    <tr class="<%= 'info' if index % 2 == 0 %>">
+
+      <td class="headimg">
+        <% userimg = user.weixin_headimgurl.present? ? user.weixin_headimgurl : '/new/default_headimg.jpg' %>
+        <div>
+          <img src="<%= userimg %>" />
+        </div>
+      </td>
+
+      <td>
+        <div class="">
+          <h4><%= user.weixin_nickname %></h4>
+        </div>
+      </td>
+
+      <td>
+        <div class="">
+          <h4>
+            <a href="/weihuo/shops/member_detail?shop_id=<%= params[:shop_id] %>&member_id=<%= member.account_id %>">
+              <%= total_profit Ecstore::WeihuoShare.all.select {|weihuo| Ecstore::Order.where(:order_id => weihuo.order_id).try(:first).try(:shop_id) == params[:shop_id].to_i && Ecstore::Order.where(:order_id => weihuo.order_id).first.member_id == member.account_id} %> 元
+            </a>
+          </h4>
+        </div>
+      </td>
+    </tr>
+
+    <% end %>
+
+  </table>
+</div>
+
+<style type="text/css">
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .info {
+    background-color: #d9edf7;
+  }
+  .headimg img {
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+  }
+  .headimg {
+    width: 35%;
+  }
+  th, td {
+    text-align: center;
+  }
+  table {
+    margin-bottom: 40px;
+  }
+
+</style>

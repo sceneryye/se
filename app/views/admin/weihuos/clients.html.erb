@@ -1,0 +1,30 @@
+  <h1>医生- 客户管理</h1>
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+  <tr>
+    <th>account_id</th>
+    <th>open_id</th>
+    <th>姓名</th>
+    <th>微信昵称</th>
+    <th>微信头像</th>
+    <th>注册时间</th>
+    <th>店铺</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%@clients.each do |client|%>
+  <tr>
+    <td><%=client.account_id%></td>
+    <td><%=client.login_name.split('_shop_')[0]%></td>
+    <td><%=client.member.name%></td>
+    <td><%=client.member.weixin_nickname%></td>
+    <td><%=image_tag client.member.weixin_headimgurl,:size=>"50x50"%></td>
+    <td><%=client.createtime%></td>
+    <td><%=client.shop_id%></td>
+  </tr>
+  <%end if @clients%>
+  </tbody>
+</table>
+<div class="paginations">
+  <%=will_paginate @clients,:container=>false if @clients%>
+</div>

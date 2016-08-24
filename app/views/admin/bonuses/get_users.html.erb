@@ -1,0 +1,119 @@
+<div class="container">
+<div class="search">
+<ul class="find-user">
+  <li>
+    <input name="name" type="text" placeholder="请输微信昵称" class="search-name" />
+  </li>
+  <li>
+    <button class="btn btn-primary sure">确定</button>
+  </li>
+</ul>
+</div>
+  <div id="demo"></div>
+  <ul class="goto_pages">
+    <li class="goto">跳转至第</li>
+    <li>
+      <form action="/admin/get_users" method="get" class="select_page">
+        <select name="page" id="page_value">
+          <%= @pages_number.times do |num| %>
+          <option value=<%= num + 1 %>><%= num + 1 %></option>
+          <% end %>
+        </select>
+      </form>
+    </li>
+    <li class="goto">页</li>
+  </ul>
+  <table class="table table-hover table-striped">
+
+    <tr>
+      <!--<th>头像</th>-->
+      <th>昵称</th>
+      <th>付款金额</th>
+      <th>红包祝福语</th>
+      <th>活动名称</th>
+      <th>备注</th>
+      <th>操作</th>
+    </tr>
+    <% @users_information.each_with_index do |user_info, index| %>
+    <tr class="<%= 'info' if index % 2 == 0 %>">
+      <!--<td style="width:10%"><img src="<%#= user_info['headimgurl'] %>" width="80%"></td>-->
+      <td style="width:10%"><%= user_info['nickname'] %></td>
+      <form>
+        <input type="hidden" name="re_openid" value="<%= user_info['openid'] %>" />
+        <td style="width:10%">
+          <input type="number" id="total_amount-<%= user_info['openid'] %>" name="total_amount" placeholder="0" style="width:60px" />
+        </td>
+        <td style="width:15%"><input type="text" value="恭喜发财"  id="wishing-<%= user_info['openid'] %>" name="wishing" placeholder="恭喜发财" style="width:100px"/></td>
+        <td style="width:15%"><input type="text" value="销售红包" id="act_name-<%= user_info['openid'] %>" name="act_name" placeholder="销售红包" style="width:100px"/></td>
+        <td style="width:15%"><input type="text" value="销售红包" id="remark-<%= user_info['openid'] %>" name="remark" placeholder="销售红包" style="width:100px" /></td>
+        <td style="width:15%"><button type="button" style="width:120px;" class="btn btn-primary btn-submit" data-id="<%= user_info['openid'] %>">发送红包</button></td>
+      </form>
+    </tr>
+    <% end %>
+  </table>
+</div>
+
+<style type="text/css">
+  tr th, tr td {
+    text-align: center;
+  }
+  .goto_pages {
+    margin-top: 10px;
+    float: right;
+  }
+  .goto {
+    margin: 5px;
+  }
+  ul>li {
+    float: left;
+    list-style: none;
+  }
+</style>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var url = '/admin/send_bonus'
+    $('.btn-submit').on('click', function(){
+      var id = $(this).attr('data-id');
+      var total_amount = $('#total_amount-' + id).val();
+      var wishing = $('#wishing-' + id).val();
+      var act_name = $('#act_name-' + id).val();
+      var remark = $('#remark-' + id).val();
+      $.ajax({
+        url: url,
+        data: {
+          re_openid: id,
+          total_amount: total_amount,
+          wishing: wishing,
+          act_name: act_name,
+          remark: remark
+        },
+        type: 'post',
+        //dataType: 'json',
+        success: function(data) {
+          //alert(data);
+        }
+      });
+
+    })
+    var str = window.location.search;
+    if(str){
+      var reg = /page=\d+/;
+      var num = reg.exec(str)[0].match(/\d+/);
+    }
+    else {num = 1;}
+    $('#page_value').val(parseInt(num));
+    $('#page_value').change(function(){
+      $('.select_page').submit();
+    });
+
+    // search people
+    $('.sure').on('click', function(){
+      var value = $('.search-name').val();
+      if(value) {
+        location.href ='/admin/find_user?name=' + value
+      }
+    });
+    
+  })
+</script>

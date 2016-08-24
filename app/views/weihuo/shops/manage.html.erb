@@ -1,0 +1,149 @@
+<div class="container">
+  <div class="title">
+    <h3>代理管理</h3>
+  </div>
+
+  <table class="table table-striped table-hover table-responsive">
+    <tr class="info">
+      <div class="row">
+        <div class="col-xs-5">
+          <td>
+            <h4>我的客户</h4>
+          </td>
+        </div>
+        <div class="col-xs-3">
+          <td>
+            <h4><%= @members.length %></h4>
+          </td>
+        </div>
+        <div class="col-xs-4">
+          <td>
+            <h4><a href="/weihuo/shops/show_members?shop_id=<%= params[:shop_id] %>">查看详情</a></h4>
+          </td>
+        </div>
+      </tr>
+
+      <tr>
+        <div class="row">
+          <div class="col-xs-5">
+            <td>
+              <h4>我的红包</h4>
+            </td>
+          </div>
+          <div class="col-xs-3">
+            <td>
+              <h4><%= @bonuses.length %></h4>
+            </td>
+          </div>
+          <div class="col-xs-4">
+            <td>
+              <h4><a href="/weihuo/shops/show_bonuses?shop_id=<%= params[:shop_id] %>">查看详情</a></h4>
+            </td>
+          </div>
+        </tr>
+
+        <tr class="info">
+          <div class="row">
+            <div class="col-xs-5">
+              <td>
+                <h4>客户订单</h4>
+              </td>
+            </div>
+            <div class="col-xs-3">
+              <td>
+                <h4><%= @orders.length %></h4>
+              </td>
+            </div>
+            <div class="col-xs-4">
+              <td>
+                <h4><a href="/weihuo/shops/show_orders?shop_id=<%= params[:shop_id] %>">查看详情</a></h4>
+              </td>
+            </div>
+          </tr>
+
+          <tr>
+            <div class="row">
+              <div class="col-xs-5">
+                <td>
+                  <h4>尾货列表</h4>
+                </td>
+              </div>
+              <div class="col-xs-3">
+                <td>
+                  <h4><%= @goods.length %></h4>
+                </td>
+              </div>
+              <div class="col-xs-4">
+                <td>
+                  <h4><a href="/weihuo/shops/show_goods?shop_id=<%= params[:shop_id] %>">查看详情</a></h4>
+                </td>
+              </div>
+            </tr>
+
+            <tr class="info">
+              <div class="row">
+                <div class="col-xs-5">
+                  <td>
+                    <h4>代理须知</h4>
+                  </td>
+                </div>
+                <div class="col-xs-3">
+                  <td>
+
+                  </td>
+                </div>
+                <div class="col-xs-4">
+                  <td>
+                    <h4><a href="/weihuo/shops/show_notice?shop_id=<%= params[:shop_id] %>">查看详情</a></h4>
+                  </td>
+                </div>
+              </tr>
+            </table>
+            <div class="qrcode">
+              <h3 style="text-align:center;">扫描二维码加盟代理</h3>
+              <div id="qrcode" style="margin: 0 auto%;margin-top:15px;width:180px;height:180px;" data-url="http://www.scnc-sh.com/weihuo/shops/new?layout=<%= @layout %>">
+              </div>
+            </div>
+          </div>
+
+          <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+          <script type="text/javascript" src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+          <script type="text/javascript" src="/assets/qrcodejs/qrcode.min.js"></script>
+
+
+          <style type="text/css">
+            .title {
+              text-align: center;
+              margin-bottom: 20px;
+            }
+            .info {
+              background-color: #d9edf7;
+            }
+            .qrcode {
+              margin: 10px auto 40px auto;
+              background-color: #d9edf7;
+              padding: 20px 0;
+            }
+          </style>
+
+          <script type="text/javascript">
+            var url = $('#qrcode').attr('data-url');
+
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+              text: url,
+              width: 180,
+              height: 180,
+              colorDark : "#000000",
+              colorLight : "#ffffff",
+              correctLevel : QRCode.CorrectLevel.H
+            });
+
+          </script>
+
+          
+          <style type="text/css">
+            #qrcode {
+              display: block;
+              margin: 0 auto;
+            }
+          </style>

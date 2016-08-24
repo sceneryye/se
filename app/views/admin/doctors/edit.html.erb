@@ -1,0 +1,60 @@
+<%= form_for :user,:url=>admin_doctor_path(@user), :method=>:put, :html => {:class => "form-horizontal"} do |f| %>
+
+  <fieldset>
+    <div class="control-group">
+      <%= f.label :name, "姓名：", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :name%>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :mobile, "手机：", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :mobile%>
+      </div>
+    </div>
+<%if @user.member_lv_id==2%>
+    <div class="control-group">
+      <%= f.label :hospital, "医院：", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :hospital%>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :department, "科室：", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :department%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :belongs_to, "代表：", :class => "control-label" %>
+      <div class="controls">
+        <%=f.select :belongs_to, @sales.collect {|sale| [sale.name, sale.member_id] },{:include_blank=>"请选择"} if @sales%>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :doctor_code, "推荐码：", :class => "control-label" %>
+      <div class="controls">
+        <%=f.select :code, {"425245"=>"425245","462366"=>"brand","627346"=>"627346","325712"=>"325712" },{:include_blank=>"请选择"}%>
+      </div>
+    </div>
+<%end%>
+    <div class="control-group">
+      <%= f.label :state, "状态：", :class => "control-label" %>
+      <div class="controls">
+        <label class="radio inline"><%= f.radio_button :state,1%>是</label>
+        <label class="radio inline"><%= f.radio_button :state,0%>否</label>
+      </div>
+    </div>
+
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>
+        <%= link_to '返回', admin_tags_path,:class=>"btn" %>
+      </div>
+    </div>
+
+  </fieldset>
+<% end %>

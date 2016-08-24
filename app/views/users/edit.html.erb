@@ -1,0 +1,48 @@
+<style type="text/css">
+    .am-tabs-warning{
+        display: none;
+    }
+</style>
+
+<%=render "shared/metable", :resource => nil %>
+
+<%=form_for :member,:url=>user_path(params[:id]),:method=>:put do |f|%>
+  <%=f.hidden_field :member_lv_id,:value=>params[:id] %>
+  <div class="connerdiv">
+  <%if params[:id] == '2'%>
+    <h3>医生注册</h3><br>
+
+      <div class="am-input-group">
+        <span class="am-input-group-label">医 院:</span>
+
+        <%=f.text_field :hospital,  :class=>"am-form-field" ,:placeholder=>"医院"%>
+      </div>
+      <br/>
+        <div class="am-input-group">
+          <span class="am-input-group-label">科 室:</span>
+          <%=f.text_field :department,  :class=>"am-form-field" ,:placeholder=>"科室"%>
+        </div>
+        <br/>
+      <%else%>
+        <h3>代表注册</h3><br>
+      <%end%>
+      <div class="am-input-group">
+        <span class="am-input-group-label">姓 名:</span>
+        <%=f.text_field :name,  :class=>"am-form-field" ,:placeholder=>"姓名"%>
+      </div>
+      <br/>
+
+      <div class="am-input-group">
+        <span class="am-input-group-label">手 机:</span>
+        <%=f.text_field :mobile,  :class=>"am-form-field" ,:placeholder=>"手机号"%>
+      </div>
+      <br/>
+
+      <div id="login_msg" style="color:red;font-size:12pt;"></div>
+      <div class="space15"></div>
+      <div class="error"><%=@member.errors.messages[:mobile].join(",") if @member.errors.messages[:mobile]%></div>
+      <%=f.submit "注 册",:class=>"am-btn am-btn-warning am-btn-block"%>
+
+  </div>
+
+<%end%>

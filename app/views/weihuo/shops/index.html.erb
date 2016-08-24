@@ -1,0 +1,74 @@
+<div class="container">
+  <h4>请选择您想进入的店铺</h4>
+  <% @shop_ids.each do |shop_id| %>
+  <% shop = Ecstore::WeihuoShop.find_by_shop_id(shop_id) %>
+  <% next if shop.nil? %>
+  <% open_id = shop.openid %>
+  <% account = Ecstore::Account.find_by_login_name(open_id) || Ecstore::Account.find_by_login_name(open_id + "_shop_#{shop_id}") %>
+  <div class="shops">
+    <a href="/weihuo/shops/<%= shop_id %>?from=chooseshop&enterin=second&layout=<%= params[:layout] %>">
+     <span class="headimg"><img src="<%= account.user.weixin_headimgurl %>" /></span>
+     <span class="name"><%= account.user.weixin_nickname %></span>
+   </a>
+ </div>
+ <% end %>
+ <div class="shops">
+  <a href="<%= @public_url %>">
+   <span class="headimg"><img src="/new/images/default_headimg.jpg" /></span>
+   <span class="name">不了，先随便逛逛吧～</span>
+ </a>
+</div>
+<% unless @shop_exist %>
+  <div class="qrcode">
+    <h3 style="text-align:center;">扫描二维码加盟代理</h3>
+    <div id="qrcode" style="margin: 0 auto%;margin-top:15px;width:180px;height:180px;" data-url="http://www.scnc-sh.com/weihuo/shops/new?layout=<%= params[:layout] %>">
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<style type="text/css">
+  h4, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .shops {
+    margin: 20px auto;
+  }
+  .headimg {
+    padding-left: 10px;
+  }
+  .name {
+    padding-left: 30px;
+  }
+  .headimg img {
+    width: 20%;
+  }
+</style>
+
+
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/assets/qrcodejs/qrcode.min.js"></script>
+<script type="text/javascript">
+  var url = $('#qrcode').attr('data-url');
+
+  var qrcode = new QRCode(document.getElementById("qrcode"), {
+    text: url,
+    width: 180,
+    height: 180,
+    colorDark : "#000000",
+    colorLight : "#ffffff",
+    correctLevel : QRCode.CorrectLevel.H
+  });
+
+</script>
+
+
+<style type="text/css">
+  #qrcode {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 50px;
+  }
+</style>

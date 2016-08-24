@@ -1,0 +1,21 @@
+
+<br>
+<section style="width:100%;margin:45px auto 0;overflow:hidden;">
+  <div class="user">
+
+    <!--账户管理begin-->
+    <div class="account order">
+      <h2>医生管理</h2>
+      <ul>
+          <%@user.users.each do |user|%>
+
+            <li> <a href="/mobile/share?id=<%=user.member_id%>"><%=user.name%></a> <a class="link"><span class="more"><span class="inner"></span></span></a> </li>
+
+          </li>
+          <%end%>
+      </ul>
+    </div>
+    <!--账户管理end-->
+
+  </div>
+</section>

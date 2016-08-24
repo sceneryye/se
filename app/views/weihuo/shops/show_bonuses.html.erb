@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="title">
+    <h3>我的红包</h3>
+  </div>
+  
+  <table class="table table-striped table-hover table-responsive">
+    <tr class="">
+
+      <th class="">
+        <div>
+          <h4>红包金额</h4>
+        </div>
+      </th>
+      <th>
+        <div class="">
+          <h4>来源</h4>
+        </div>
+      </th>
+      <th>
+        <div class="">
+          <h4>状态</h4>
+        </div>
+      </th>
+    </tr>
+
+    <% @bonuses.select{|b| Ecstore::Order.where(:order_id => b.order_id).present?}.each_with_index do |bonus, index| %>
+    <% member_id = Ecstore::Order.where(:order_id => bonus.order_id).try(:first).try(:member_id) %>
+    <% user = Ecstore::User.where(:member_id => member_id).try(:first) %>
+    <% order = Ecstore::Order.where(:order_id => bonus.order_id).try(:first) %>
+
+    <tr class="<%= 'info' if index % 2 == 0 %>">
+
+      <td class="">
+        <div>
+          <%= bonus.amount.to_f %> 元
+        </div>
+      </td>
+
+      <td>
+        <div class="">
+          <h4><%= user.try :weixin_nickname %></h4>
+        </div>
+      </td>
+
+      <td>
+        <div class="">
+          <h4>
+          <a href="/weihuo/shops/bonus_detail?shop_id=<%= params[:shop_id] %>&order_id=<%= order.order_id %>">
+              <% if bonus.status == 1 %>
+              <%= '已发送' %>
+              <% elsif order.ship_status != '1' || order.pay_status != '1' %>
+              <%= '未发送' %>
+              <% else %>
+              <%= '待发送' %>
+              <% end %>
+            </a>
+          </h4>
+        </div>
+      </td>
+    </tr>
+
+    <% end %>
+
+  </table>
+  <%= will_paginate @bonuses %>
+</div>
+
+<style type="text/css">
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .info {
+    background-color: #d9edf7;
+  }
+  
+
+  th, td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  .container {
+    margin-bottom: 40px;
+  }
+
+</style>

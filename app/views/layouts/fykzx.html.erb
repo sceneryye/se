@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)/mobile/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>上儿营养中心</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon-precomposed" href="/mobile/images/apple-touch-icon.png">
+<link href="/fykzx/home.css" rel="stylesheet" type="text/css">
+<link href="/fykzx/foot.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/fykzx/user.css">
+<link href="/fykzx/reset.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+ .nav-index{
+	width:100%;
+	height:auto;
+	margin:0px;
+	display: inline-block;
+}
+ .nav-index ul, .nav-index ul li {
+	margin:0px;
+	padding:0px;
+	list-style-type: none;
+	display: inline-block;
+}
+.nav-index ul {
+	height: auto;
+	width: 100%;
+	float: left;
+}
+.nav-index ul li {
+	float: left;
+	width: 24.5%;
+	height: 78px;
+	overflow: hidden;
+	border:1px solid #e6e6e6;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.nav-index ul li:nth-child(4n+1) {
+	border-left:none;
+}
+.nav-index ul li:nth-child(4n+2) {
+	border-left:none;
+}
+.nav-index ul li:nth-child(4n+3) {
+	border-left:none;
+}
+.nav-index ul li:nth-child(4n+4) {
+	border-left:none;
+	border-right:none;
+}
+.nav-index ul li:nth-child(8n+5) {
+    border-top:none;
+}
+.nav-index ul li:nth-child(8n+6) {
+	border-top:none;
+}
+.nav-index ul li:nth-child(8n+7) {
+	border-top:none;
+}
+.nav-index ul li:nth-child(8n+8) {
+	border-top:none;
+}
+.nav-index ul li img {
+	display: block;
+	height: 35px;
+	margin: auto;
+	padding: 0px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+.nav-index ul li a span {
+	width:100%;
+	text-align:center;
+	float:left;
+	margin:5px auto;
+	font-size:12px;
+	color:#9e9e9e;
+	height: auto;
+}
+</style>
+<script type="text/javascript" src="/fykzx/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/fykzx/jquery.lazyload.js"></script>
+<script type="text/javascript" src="/fykzx/fbi.js"></script>
+<script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $(".row_list img").lazyload({
+          placeholder: "images/img_bg4.png",
+          effect: "fadeIn"
+        });
+      });
+    </script>
+</head>
+<body>
+<div class="header">
+  <div class="left"> <a href="/mobile/" class="home"> <span> 上儿营养中心 </span> </a> </div>
+  <div class="tit">
+    <h2> <span class="title"> 上儿营养中心 </span> </h2>
+  </div>
+  <div class="right">
+    <ul>
+      <li class="user"> <a href="/mobile/user_center" title="个人中心"> <span class="ico"> </span> </a> </li>
+      <li class="cart"> <a href="/cart/mobile?supplier_id=" title="购物车"> <span class="ico"> </span> <span id="ShoppingCartNum" class="tip hide"> </span> </a> </li>
+    </ul>
+  </div>
+</div>
+<br><br><br><br>
+<%= yield%>
+
+﻿<!--页面底部-->
+			<div id="footer" class="footer">
+				<div class="row g_1">
+					<a href="/mobile/">首页</a>
+					<a href="/mobile/user_center">用户中心</a>					<a href="/cart/mobile?supplier_id=">购物车</a>
+				</div>
+				<div class="row g_2">
+					<a href="javascript:window.scrollTo(0,0);">返回顶部</a>
+				</div>
+				<div class="row g_3">
+					<p>©2016 上儿营养中心</p>
+				</div>
+			</div>
+
+<!--页面底部-->
+<link href="/fykzx/global_nav.css" type="text/css" rel="stylesheet">
+<div class="global-nav global-nav--current">
+    <div class="global-nav__nav-wrap">
+        <div class="global-nav__nav-item">
+            <a href="/mobile/" class="global-nav__nav-link">
+                <i class="global-nav__iconfont global-nav__icon-index">󰀁</i>
+                <span class="global-nav__nav-tit">首页</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item">
+            <a href="/mobile/categories" class="global-nav__nav-link">
+                <i class="global-nav__iconfont global-nav__icon-category">󰀂</i>
+                <span class="global-nav__nav-tit">分类</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item">
+            <a href="/mobile/categories" class="global-nav__nav-link">
+                <i class="global-nav__iconfont global-nav__icon-search">󰀃</i>
+                <span class="global-nav__nav-tit">搜索</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item">
+            <a href="/cart/mobile?supplier_id=" class="global-nav__nav-link">
+                <i class="global-nav__iconfont global-nav__icon-shop-cart">󰀄</i>
+                <span class="global-nav__nav-tit">购物车</span>
+                <span class="global-nav__nav-shop-cart-num" id="carId">0</span>
+            </a>
+        </div>
+        <div class="global-nav__nav-item">
+            <a href="/mobile/orderlist" class="global-nav__nav-link">
+                <i class="global-nav__iconfont global-nav__icon-my-yhd">󰀅</i>
+                <span class="global-nav__nav-tit">我的订单</span>
+            </a>
+        </div>
+    </div>
+    <div class="global-nav__operate-wrap">
+        <span class="global-nav__yhd-logo"></span>
+        <span class="global-nav__operate-cart-num" id="globalId">0</span>
+    </div>
+</div>
+<script type="text/javascript" src="/fykzx/zepto.min.js"></script>
+<script type="text/javascript">
+Zepto(function($){
+   var $nav = $('.global-nav'), $btnLogo = $('.global-nav__operate-wrap');
+   //点击箭头，显示隐藏导航
+   $btnLogo.on('click',function(){
+     if($btnLogo.parent().hasClass('global-nav--current')){
+       navHide();
+     }else{
+       navShow();
+     }
+   });
+   var navShow = function(){
+     $nav.addClass('global-nav--current');
+   }
+   var navHide = function(){
+     $nav.removeClass('global-nav--current');
+   }
+
+   /*$(window).on("scroll", function() {
+		if($nav.hasClass('global-nav--current')){
+			navHide();
+		}
+	});*/
+})
+function get_search_box(){
+	try{
+		document.getElementById('get_search_box').click();
+	}catch(err){
+		document.getElementById('keywordfoot').focus();
+ 	}
+}
+window.onload = function(){
+ $('.global-nav__operate-wrap').click();
+}
+</script>
+<div id="main-search" class="main-search">
+<div class="hd"> <span class="ico_08 close"> 关闭 </span> </div>
+<div class="bd">
+  <div class="search_box">
+    <form action="/mobile/search" method="post" id="searchForm" name="searchForm">
+      <div class="content">
+        <input class="text" type="search" name="keywords" id="keywordBox" autofocus="">
+        <button class="ico_07" type="submit" value="搜 索" onclick="return check(&#39;keywordBox&#39;)"></button>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+jquery(function() {
+  jquery('nav#menu').mmenu();
+  jquery('#get_search_box').click(function(){
+    jquery(".mm-page").children('div').hide();
+    jquery("#main-search").css('position','fixed').css('top','0px').css('width','100%').css('z-index','999').show();
+    //$('#keywordBox').focus();
+  })
+  jquery("#main-search .close").click(function(){
+    jquery(".mm-page").children('div').show();
+    jquery("#main-search").hide();
+  })
+});
+
+</script>
+<!--页面底部-->
+
+</body></html>

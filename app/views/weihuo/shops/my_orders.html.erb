@@ -1,0 +1,148 @@
+
+<div class="title">
+  <h3>我的订单</h3>
+</div>
+
+<% @order_ids.each do |order_id| %>
+<% order = Ecstore::Order.find_by_order_id(order_id) %>
+<% status = true %>
+<% order.order_items.each do |order_item| %>
+<% next if Ecstore::Good.find_by_goods_id(order_item.goods_id).nil? %>
+<% status = false if Ecstore::Good.find_by_goods_id(order_item.goods_id).supplier_id != 10 %>
+<% end %>
+<% next unless status %>
+<div class="order-box">
+
+  <div class="order-status-price">
+    <div class="order-status">
+      <span class="status-key">订单状态：</span>
+      <span class="status-value"><%= order.status_text %></span>
+    </div>
+    <div class="pay-status">
+      <span class="status-key">付款状态：</span>
+      <span class="status-value"><%= order.pay_status_text %></span>
+    </div>
+    <div class="ship-status">
+      <span class="status-key">发货状态：</span>
+      <span class="status-value"><%= order.ship_status_text %></span>
+    </div>
+    <div class="price">
+      <span class="price-key">订单总价：</span>
+      <span class="price-value">¥<%= order.total_amount %></span>
+    </div>
+  </div>
+  <div class="createtime">
+    <span class="time-key">订单时间：</span></span>
+    <span class="time-value"><%= Time.at(order.createtime).strftime('%F %T') %></span>
+  </div>
+  <div class="order-id">
+    <span class="orderid-key">订单号码：</span></span>
+    <span class="orderid-value"><%= order_id %></span>
+  </div>
+  <% if order.ship_status != '0' %>
+  <span class="orderid-key">运单号码：</span></span>
+  <% order.deliveries.each do |d| %>
+  <span class="time-value"><%= d.try :delivery_id %></span>
+  <% end %>
+  <% end %>
+  <hr />
+
+  <div class="supplier">
+    医生
+  </div>
+  <hr />
+
+  <% order.order_items.each do |order_item| %>
+  <% goods = Ecstore::Good.find_by_goods_id(order_item.goods_id) %>
+  <% next if goods.nil? %>
+  <div class="item-list">
+    <div class="goods-pic">
+      <img src="<%= goods.medium_pic %>" />
+    </div>
+    <div class="goods-info">
+      <div class="goods-name">
+        <%= goods.name %>
+        
+      </div>
+      <div class="goods-amount">
+        <%= order_item.nums %> 件
+      </div>
+    </div>
+    <div class="clear">
+    </div>
+  </div>
+  <% end %>
+
+</div>
+<% end %>
+
+
+<style type="text/css">
+  body {
+    background-color: #FFF5EE;
+  }
+  
+  .title {
+    text-align: center;
+    margin: 30px;
+  }
+  .order-box {
+    background-color: white;
+    border-bottom: 1px white solid;
+    border-top: 1px white solid;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  .order-status-price {
+
+  }
+  .status-value, .price .price-value, .createtime .time-value, .order-id .orderid-value {
+    padding-left: 20px;
+  }
+  
+  .space {
+
+  }
+  .status-value {
+    color: #1569c7;
+  }
+  .price-value {
+    color: #dc381f;
+  }
+  .supplier {
+    padding: 0;
+  }
+  .item-list {
+    margin-bottom: 10px;
+  }
+  .goods-pic {
+    float:left;
+    width: 20%;
+  }
+  .goods-pic img {
+    width: 100%;
+    
+  }
+  .goods-info {
+    float:left;
+    padding-left: 10px;
+    width: 70%;
+  }
+  .goods-name {
+    width:100%;
+    word-break:keep-all;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .goods-amount {
+    color: #5c5858;
+  }
+  .clear {
+    clear: both;
+  }
+
+
+
+
+</style>

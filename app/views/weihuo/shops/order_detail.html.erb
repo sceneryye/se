@@ -1,0 +1,153 @@
+<div class="container-fluid">
+  <h3 class="title">订单详情</h3>
+  <hr />
+
+  <h4>订单号：<%= @order.order_id %></h4>
+  <hr />
+
+  <div class="info">
+    <div class="user-info">
+      <span class="nickname">
+        <%= @user.weixin_nickname %>
+      </span class="nickname">
+      
+      <span class="mobile">
+        <%= @user.mobile || '暂无手机信息' %>
+      </span>
+    </div>
+    <div class="user-addr">
+      <%= (@user.area.to_s + @user.addr.to_s).present? ? (@user.area.to_s + @user.addr.to_s) : '暂无地址信息' %>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="goods-detail">
+    <div class="goods-pic">
+      <img src="<%= @product.good.medium_pic %>" />
+    </div>
+    <div class="goods-info">
+      <div class="goods-name">
+        <%= @product.name %>
+      </div>
+      <div class="goods-price">
+        ¥<%= @product.price %>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <% if @order.pay_status != '1' %>
+  <div class="button-not-payed">
+    <button class="btn btn-default btn-lg" id="not-payed" disabled="disabled">该订未付款！</button>
+  </div>
+  <% else %>
+  <% if @order.ship_status == '0' && @order.status != 'finish' %>
+  <div class="button-send">
+    <button class="btn btn-success" id="send" data-orderid="<%= @order.order_id %>" >发货</button>
+    <button class="btn btn-default btn-lg" id="sent" style="display:none;" disabled="disabled">该订单已完成！</button>
+  </div>
+  <% else %>
+  <div class='button-sent'>
+    <button class="btn btn-default btn-lg" id="sent" disabled="disabled">该订单已完成！</button>
+  </div>
+  <% end %>
+  <% end %>
+</div>
+
+<style type="text/css">
+  .container {
+    width: 100%;
+  }
+  .info{
+    background-color: #cff;
+    padding: 20px 5px;
+  }
+  .user-info {
+    margin-bottom: 10px;
+  }
+  .mobile {
+    padding-left: 10%;
+  }
+  .title {
+    text-align: center;
+  }
+  .goods-pic, .goods-info {
+    float: left;
+  }
+  .goods-info {
+    width: 70%;
+    padding-left: 20px;
+  }
+  .goods-name {
+    width:100%;
+    word-break:keep-all;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .goods-price {
+    margin-top: 10px;
+  }
+  .clear {
+    clear: both;
+  }
+  .goods-pic {
+    width: 20%;
+  }
+  .goods-pic img {
+    width: 100%;
+  }
+
+  .button-send, .button-sent, .button-not-payed {
+    text-align: center;
+    margin: 20px auto;
+    margin-bottom: 40px;
+  }
+</style>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#send").on('click', function(){
+      swal({
+        title: "发货确认",
+        text: "您确定已经发货？点击确定后不能更改！",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        closeOnConfirm: false,
+        html: false
+      }, 
+      function(){
+        var url = '/weihuo/shops/modify_ship_status';
+        var order_id = $('#send').attr('data-orderid');
+        $.ajax({
+          url: url,
+          type: 'post',
+          data: {
+            order_id: order_id,
+            ship_status: '1',
+          },
+          success: function(e) {
+            if(e == 'success') {
+              swal({
+                title: '成功！', 
+                text: '商品发货完成！', 
+                type: 'success',
+                timer: 4000,
+                confirmButtonText: '确定',
+              });
+              $('#send').hide();
+              $('#sent').show();
+
+            };
+          },
+        });
+        
+      });
+    });
+});
+
+</script>

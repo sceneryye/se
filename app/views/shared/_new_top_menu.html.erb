@@ -1,0 +1,40 @@
+<header id="header" style="height:53px;">
+
+        <div class="container">
+            <!-- main header -->
+
+            <div class="row">
+                <!-- main menu-->
+                <div class="main-menu">
+                    <div class="container">
+                        <div class="row">
+                            <nav class="navbar" id="main-menu">
+                                <div class="container-fluid">
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                            <i class="fa fa-bars"></i>
+                                        </button>
+                                        <a class="navbar-brand" href="#">菜单</a>
+                                    </div>
+                                    <div id="navbar" class="navbar-collapse collapse">
+
+                                        <ul class="nav navbar-nav">
+                                           <li class="<%= "active" if controller_name == "home" %>"><a href="/">首页</a></li>
+                                            <li><%=link_to '走进上儿',page_path(id:'top_cate',cate_id:1)%></li>
+                                            <li><%=link_to '新闻中心',page_path(id:'top_cate',cate_id:2)%></li>
+                                            <li><%=link_to '社会责任',page_path(id:'top_cate',cate_id:3)%></li>
+                                            <li class="<%= "active" if controller_name == "cats" %>"><a href="/gallery/490?type=1">产品中心</a></li>
+                                            <li><%=link_to '育儿专区',page_path(id:'top_cate',cate_id:5)%></li>
+                                            <li><%=link_to '服务中心',page_path(id:'top_cate',cate_id:6)%></li>
+                                            <li><%=link_to '官方商城',page_path(id:'top_cate',cate_id:7)%></li>
+                                        </ul></br>
+                                    </div><!--/.nav-collapse -->
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./main menu-->
+            </div>
+
+    </header>

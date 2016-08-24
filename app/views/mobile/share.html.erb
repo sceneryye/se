@@ -1,0 +1,21 @@
+
+<br>
+<section style="width:100%;margin:45px auto 0;overflow:hidden;">
+  <div class="user">
+    <h2><%=@owner.name if @owner%></h2>
+    <p><%=@owner.hospital if @owner%></p>
+    <p><%=@owner.department if @owner%></p>
+    <div class="quit"><img src="/images/doctor_codes/<%=@owner.code if @owner%>.png"></div>
+
+
+    <div class="account order">
+      <h2>病人信息</h2>
+      <ul>
+        <li> <a href="#">已经有<%=@owner.users.count%>个病人报到过了。</a> <a class="link"><span class="more"><span class="inner"></span></span></a> </li>
+        <li> <a href="#">积分：<%=@total_points%>分</a> <a class="link"><span class="more"><span class="inner"></span></span></a> </li>
+        <li> <a href="#">未提现：<%=@poins%>分</a> <a class="link"><span class="more"><span class="inner"></span></span></a> </li>
+        <li> <a href="#">已提现：<%=@withdrawed%>分</a> <a class="link"><span class="more"><span class="inner"></span></span></a> </li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,12 @@
+<%= stylesheet_link_tag "store/cats" %>
+<div class="left">
+  <div class="tree-menu" id="cats_tree">
+    <%@cates.each_with_index do |cat,index|%>
+      <div class="title-level1">
+        <%=link_to cat.name, pages_path(cate: cat.id)%>
+      </div>
+
+    <%end%>
+
+  </div>
+</div>

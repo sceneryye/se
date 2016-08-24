@@ -1,0 +1,43 @@
+
+<h1>人员管理</h1>
+
+
+<table class="table table-bordered table-striped table-hover">
+<thead>
+<tr>
+<th><input type="checkbox" id="select_page_all"></th>
+  <th>推荐码</th>
+  <th>姓名</th>
+  <th>手机</th>
+  <th>医院</th>
+  <th>科室</th>
+  <th>代表</th>
+  <th>状态</th>
+  <th>注册时间</th>
+  <th>操作</th>
+</tr>
+</thead>
+<tbody>
+<%@users.each do |user|%>
+<tr>
+<td><%=check_box_tag "batch[users_id][]", user.id, false, :id=>"user_#{user.id}",:class=>"good"%></td>
+  <td><a href='/images/doctor_codes/<%=user.code%>.png' target='_blank'><%=user.code%></a></td>
+  <td><%=user.name%></td>
+  <td><%=user.mobile%></td>
+  <td><%=user.hospital%></td>
+  <td><%=user.department %></td>
+  <td><%=user.user.name if user.belongs_to %></td>
+  <td><%=user.state%></td>
+  <td><%=Time.at(user.account.createtime).strftime('%Y-%m-%d %H:%M') if user.account%></td>
+  <td>
+    <%=link_to "编辑",edit_admin_doctor_path(user)%>
+  </td>
+</tr>
+<%end if @users%>
+</tbody>
+</table>
+
+<div class="pagination">
+ <%=will_paginate @users,:container=>false if @users%>
+</div>
+</div>

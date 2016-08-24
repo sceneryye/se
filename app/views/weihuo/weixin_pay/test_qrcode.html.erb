@@ -1,0 +1,26 @@
+<div id="qrcode" style="margin: 0 auto%;margin-top:15px;position:relative;width:180px;height:180px;" >
+</div>
+<script type="text/javascript" src="/assets/kael-Qrcode/build/kaelQrcode.min.js"></script>
+<script type="text/javascript">
+  var url = $('#qrcode').attr('data-url');
+  var img = $('#qrcode').attr('data-img');
+  
+  var kaelPic = new KaelQrcode();
+  kaelPic.init(document.getElementById("qrcode"), {
+    text : 'www.qq.com',
+    size: 200,
+    
+    img: {
+      src : 'http://img0.bdstatic.com/img/image/shouye/bizhi1109.jpg',
+      border: "#fff"
+    },
+  })
+</script>
+
+
+<style type="text/css">
+  #qrcode {
+    display: block;
+    margin: 0 auto;
+  }
+</style>

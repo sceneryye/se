@@ -1,0 +1,140 @@
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+
+	<title>139活动专区</title>
+
+	<link combofile="appliancetimepub.shtml" rel="stylesheet" href="/new_mobile/css/index.min.css?t=1435751740">			
+	
+
+</head>
+<body style="zoom: 5;">
+	
+<!-- PPMS 主title -->
+<script type="text/javascript">
+	var mainTitle= [{
+			mainone:"专题区",
+	ptagone:"38088.1.1",
+			maintwo:"最爆款",
+	ptagtwo:"38088.1.2",
+			mainthree:"品牌区",
+	ptagthere:"38088.1.3"
+			
+		}
+		
+	];
+</script>
+
+<div class="home">
+	<div class="header">
+		<div class="bg"></div>
+		<div class="time"><span>仅限4月18日-5月26日</span>	</div>
+		<div class="marquee">
+			<div class="inner"><span>汇吃食尚节&mdash;&mdash;货真价实的原生佳品</span><span> </span><span>满500减50</span></div>
+		</div>
+		<a href="/coupons" class="clickme" style="display:none"> <!--  原来是clickme-->
+		  <img src="/new_mobile/img/clickme.png">
+		</a>
+	</div>
+	<div class="content">
+	
+	<div class="coupon">
+		<a href="/coupons/3"><div class="coupon1">
+				5<small>满100减5</small><br>
+				<span> 立即领取</span>
+			</div>
+		</a>
+		<a href="/coupons/5"><div class="coupon2">
+				50<small>满500减50</small><br>
+				<span> 立即领取</span>
+			</div>
+		</a>
+			<!-- <span class="btn"> 立即领取</span> -->
+
+	</div>
+	<div id="toolbarHead" class="menubox" style="display:none">
+	  <div class="menu" id="mtab"><a class="option" href="javascript:$('#divSubjectRegion')[0].scrollIntoView();" ptag="38088.1.1">专题区</a><a class="option" href="javascript:$('#divBaoKuan')[0].scrollIntoView();" ptag="38088.1.2">最爆款</a><a class="option active" href="javascript:$('#brandDiscountRegin')[0].scrollIntoView();" ptag="undefined">品牌区</a></div>
+	</div>
+    <div class="classify" id="divSubjectRegion" style="display:none">
+		<div class="line">专题区</div>
+		
+		<div class="sale"><span>限量疯抢专区</span></div>
+		<i class="lineleft"></i>
+		<i class="lineright"></i>
+	</div>
+
+	<div class="brands"  style="display:none">
+	<%@galleries.each do |gallery|%>
+        <a href="/mobile">
+               <span class="title"><%=gallery.tag_name%></span>      
+               <span class="detail"> </span>      
+               <img src="<%=gallery.cover_url%>" loaded="6">      
+        </a> 
+    <%end%>    
+    </div>
+     
+    <div id="morebaokuan">                           
+        <div class="classify" id="divBaoKuan">          
+         	<div class="line">汇吃食尚节产品大汇集</div>     
+         	<div class="en"></div>       
+         	<div class="sale">
+         		<span>营养&滋补</span>
+         	</div>     <i class="lineleft"></i>     <i class="lineright"></i>        
+        </div> 
+         	 <%@shop_goods.each do |shopgoods|%>                  
+         	<a href="/mobile/<%=shopgoods.good.goods_id%>">                     </a>
+         	<div class="goodlist">
+         		<a href="/mobile/<%=shopgoods.good.goods_id%>">          </a>
+         		<div class="good">
+         			<a href="/mobile/<%=shopgoods.good.goods_id%>">      
+         			<span class="goodprev"><img src="<%=shopgoods.good.medium_pic%>" loaded="69"></span>      
+         			<span class="gooddetail">       
+         			<span class="title"><%=shopgoods.good.name%></span>                                   
+         			<span class="desc" style="display:none">                           
+         				<span style="color:red;" style="display:none">【139】</span>                           
+         				<%=raw shopgoods.good.desc%>                            
+         			</span>                    
+         			<span class="sale"><span class="price">￥<%=shopgoods.good.price%>      </span>                    
+         			<span class="salemore" style="display:none">
+         				<span class="">1138</span>人已评价
+         			</span>                                          
+         			</span>      </span>      </a>
+         			<a href="/mobile/<%=shopgoods.good.goods_id%>" class="buybtn">立即购买</a>                                   
+         			<div class="floatitem">直降<%=shopgoods.good.mktprice-shopgoods.good.price%>元</div>           
+         			</div>    
+         		</div>
+         	<%end%>                                                                                                                      
+        </div>
+		<!-- end -->
+	</div>
+
+	<a href="/coupons" class="float">
+		<img src="/new_mobile/img/floating_m.png">
+	</a>
+
+</div>
+ 
+
+
+  <link rel="stylesheet" href="/new_mobile/css/mod_foot.s.min.css">
+
+   	   <div class="mod_foot_follow">
+        <a href="http://mp.weixin.qq.com/s?__biz=MzA5OTM5ODIzMQ==&mid=210856899&idx=1&sn=cc512525ce0a5bc8ba5b70e297f50428#rd" ptag="38088.12.1">关注上儿服务号 获取优惠资讯</a>
+    </div>
+
+<script type="text/javascript">
+	function zoom(){
+
+		var cwidth = document.documentElement.getBoundingClientRect().width,
+			cheight = window.innerHeight;
+			var zwidth = Math.floor(Math.min(cwidth/320,99999) * 100)/100;
+			// if (zwidth>3.5){
+			// 	zwidth=3.5;
+			// }
+			document.body.style.zoom = zwidth;
+	}
+	zoom();
+	window.addEventListener('resize',zoom);	
+	
+</script>

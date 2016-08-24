@@ -1,0 +1,187 @@
+<style>
+  .bottomdivsclearfix{
+    display: none;
+  }
+
+
+</style>
+
+<%if @line_items.count > 0%>
+
+ <div class="section addr" style="margin:20px 10px;border-bottom:1px solid rgb(240,240,240)">
+        <h4 style="font-weight:bold;">
+          收货人信息
+        </h4>
+        <div class="checkcon clearfix addr-list">
+          <%if @addrs.count>0%>
+          <%@addrs.each_with_index do |addr,index|%>
+          <%if @def_addr == addr%>
+       <label class="radio active shipping-address-active shipping-addr" id="addr-<%= addr.id %>">
+       &nbsp;&nbsp;&nbsp; <%=radio_button_tag "member_addr", addr.addr_id,:checked=>true%>
+      <span class="addr-line"><%=addr.addr_line%></span>
+      <%=link_to "修改",edit_member_addr_path(addr, :return_url => @return_url, :platform => params[:from] == 'weihuo' ? 'mobile' : '', :shop_id => params[:shop_id], :from => params[:from]), :remote => params[:from] == 'weihuo' ? false : true, :class=>"update-link"%>
+    </label>
+
+    <%else%>
+  <label class="radio shipping-address shipping-addr" id="addr-<%= addr.id %>">
+       &nbsp;&nbsp;&nbsp;  <%=radio_button_tag "member_addr", addr.addr_id,:checked=>true%>
+      <span class="addr-line"><%=addr.addr_line%></span>
+      <%=link_to "修改",edit_member_addr_path(addr, :return_url => @return_url, :platform => params[:from] == 'weihuo' ? 'mobile' : '', :shop_id => params[:shop_id], :from => params[:from]), :remote => params[:from] == 'weihuo' ? false : true, :class=>"update-link"%>
+    </label>
+
+          <%end%>
+          <%end%>
+
+
+    <div class="radio new-shipping-address">
+             &nbsp;&nbsp;&nbsp;   <%=link_to "新增地址＋",new_member_addr_path(:platform => params[:platform], :shop_id => params[:shop_id], :from => params[:from]), :remote=>true, :class=>"new-link"%>
+          </div>
+          <%end%>
+        </div>
+      </div>
+ <%=render :partial=>"patch/member_addrs/form",:locals=>{ :display=>( @addrs.count == 0 ), :@addr=>Ecstore::MemberAddr.new }%>
+
+
+
+
+
+</div>
+
+
+<div>
+
+  <%=form_for :order,:url=>"#{orders_path}?platform=mobile&shop_id=#{params[:shop_id]}&from=#{params[:from]}",:html=>{ :class=>"am-form",:id=>"order_form" } do |f|%>
+  <%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
+
+  <div class="am-panel am-panel-warning" data-collapse="true" data-style="arrow" style="display:none">
+    <div class="am-panel-hd"><%= I18n.t "delivery_time"%></div>
+    <div class="am-panel-bd">
+      <div class="in_pay clearfix ">
+        <%=f.select :ship_day,ship_day_options%>&nbsp;&nbsp;&nbsp;
+        <%=f.text_field :ship_special,:class=>"input-small hide datetime"%>
+        <%=f.select :ship_time2,ship_time_options%>
+      </div>
+    </div>
+  </div>
+
+  <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow" style="display:none">
+    <div class="am-panel-hd"><%= I18n.t "delivery_options"%></div>
+    <div class="am-panel-bd">
+      <label class="radio active">
+        <%if @supplier.id==78&& @cart_total >=350 %>
+        <label><%=I18n.t "order_notice_three"%></label>
+        <%else%>
+        <%=f.radio_button :shipping_id, 0%><span class="addr-line"><%= I18n.t "self_options"%></span>
+      </label>
+      <label class="radio" style="margin-left: 40px;padding: 2px">
+        <%=f.radio_button :shipping_id, 1, :checked=>true%> <%= I18n.t "express"%>
+        <span class="extra-info">+ ￥<%=@cart_freight%></span>
+        <%end%>
+      </label>
+    </div>
+  </div>
+
+  <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow">
+    <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow">
+      <div class="am-panel-hd"><%= I18n.t "pay_options"%></div>
+      <div class="am-panel-bd">
+        <%if @user.advance>0 && @user.advance > @cart_total%>
+        <label class="radio active" style="margin-left: 40px;padding: 2px">
+          <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>预存款先支付</label>
+          <%end%>
+          <label id="alipay" class="radio active" style="margin-left: 40px;padding: 2px;display:none">
+            <%=f.radio_button :payment, "alipaywap" %><%= I18n.t "alipay_mobile"%>
+          </label>
+          <label id="wxpay" class="radio active" style="margin-left: 40px;padding:2px;display:none">
+            <%=f.radio_button :payment, "wxpay",:checked=>true %>
+            <%= I18n.t "wechat"%>
+          </label>
+
+          <script>
+              // 判断浏览器，显示支付方式
+              if (is_weixin_browser){
+                document.getElementById("wxpay").style.display="block";
+              }
+              else
+              {
+                document.getElementById("alipay").style.display="block";
+                document.getElementById("order_payment_alipaywap").checked="checked"
+              }
+            </script>
+          </div>
+          <div class="am-panel-hd"><%= I18n.t "pay_detail"%></div>
+        </div>
+      </div>
+
+
+<%if @user.email.include? '@139' %>
+<div>
+<%if @pmtable%>
+<div class="section promotions">
+  <h5>优惠:</h5>
+  <%=render "promotions"%>
+  <%=render "coupons"%>
+</div>
+<%end%>
+</div>
+<%end%>
+
+      <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow" style="display:none">
+        <div class="am-panel-hd"><%= I18n.t "invoice"%></div>
+        <div class="am-panel-bd">
+          <input class="text_input w100" id="order_tax_company" name="order[tax_company]" placeholder="<%=I18n.t "details_invoice"%>" size="30" type="text">
+          <%#=f.text_field :tax_company,:placeholder=>"请输入发票抬头",:class=>"text_input w100"%>
+        </div>
+      </div>
+      <%if @supplier.id==78 %>
+      <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow" style="display:none">
+        <div class="am-panel-hd"><%= I18n.t "order_notice"%>   <span style="color: #ff0000"><%= I18n.t "order_notice_one"%></span> <br/>
+          <span><%= I18n.t "order_notice_two"%></span>
+        </div>
+      </div>
+    </div>
+    <%end%>
+
+    <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow">
+      <div class="am-panel-hd"><%= I18n.t "order_details_price"%></div>
+      <div class="am-panel-bd">
+        <span class="bg-border"><span class="icon"></span></span>
+        <% @cart_total_by_supplier.each(:as => :hash) do |row|%>
+        <p style="display:none"><%="#{row["supplier_id"]}|#{row["total"]}|#{row["freight"]}"%></p>
+        <%end%>
+        <p>&nbsp;<%= I18n.t "order_goods_price"%>：<span class="fr  " id="order_amount" data-amount = "<%=@cart_total%>">¥<%=@cart_total%>&nbsp;</span></p>
+        <p>&nbsp;<%= I18n.t "express_price"%>：
+          <span class="fr" data-amount = "<%=@cart_freight%>" id="cart_freight">¥<%=@cart_freight%>&nbsp;</span></p>
+          <p>&nbsp;优惠：<span class="fr">-¥<%=@favorable_terms%>&nbsp;</span></p>
+           <p>优惠券：<span class="fr" data-amount="0" id="coupon_amount">-￥0</span>
+          <p>&nbsp;<%= I18n.t "overall"%>：<span class="fr" style="color: red" id="pay_amount">¥<%=@cart_total_final%>&nbsp;</span></p>
+
+        </div>
+          <span class="bg-border2"></span>
+        </div>
+      </div> <%@line_items.each do |line_item|%>
+
+      <% if line_item.quantity<1%>  <%else%>
+     <input type="submit" class="am-btn am-btn-warning am-btn-block" style="background-color:#BF1E2E;" value="<%=I18n.t 'confirm_order'%>">
+     <%break;%>
+      <%end%>
+
+       <%end%>
+
+      <%end%>
+      <%else%>
+      <p><%=I18n.t "order_notice_four"%>。
+        <a id="addressLink" href="/orders/new_mobile_addr?platform=mobile&supplier_id=78"></a></p>
+
+        <%end%>
+        <br/>
+        <br/>
+
+  <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+<script src="/assets/area_seletor.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery.ui.core.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery.ui.datepicker.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery.ui.datepicker-zh-CN.js?body=1" type="text/javascript"></script>
+<script src="/assets/store/orders.js?body=1" type="text/javascript"></script>
+        <%#=javascript_include_tag "store/tairyo_order"%>
