@@ -10,45 +10,48 @@
 <link rel="stylesheet" href="/new_mobile/css/mod_bar_download.s.min.css">
 <link rel="stylesheet" href="/new_mobile/css/area_select.s.min.css">
 <link rel="stylesheet" href="/new_mobile/css/detail.s.min.css?t=1435217816">
-
+<link rel="stylesheet" href="/new_mobile/css/base.css">
 </head>
 <body>
 
-        <div id="part_main">
-            <div class="wx_bar wx_bar_in" style="display:none" id="topBack">
-              <div class="wx_bar_back"><a id="backUrl" href="/mobile">上儿购物</a></div>
-              <div class="wx_bar_tit"></div>
-          </div>
-          <script type="text/javascript">
-            function $id(id){
-                return document.getElementById(id) || document.createElement('span');
-            }
-            var _iswx = navigator.userAgent.toLowerCase().indexOf('micromessenger') != -1;
-            function showTopBack(isshow){
-                if(isshow || (history.length<=1 && location.href.indexOf('hidetitle')==-1)) {
-                    if(_iswx){
-                       $id('topBack').style.display = '';
-                       $id('backUrl').href='/mobile';
-                   };
-               };
-           };
-           showTopBack(false);
-       </script>
-       <div class="mod_slider" id="loopImgDiv">
-        <div class="inner">
-           <%for value in 0..(@goods.big_pic.split(",").length-1)%>
-           <ul class="pic_list" id="loopImgUl" style="">
-               <li>
-                  <img src="<%=@goods.big_pic.split(",")[value]%>">
-              </li>
-          </ul>
-          <%end%>
-      </div>
-      <div class="bar_wrap">
-        <ul class="bar" id="loopImgBar"><li></ul>
-    </div>
+<div id="part_main">
+  <div class="wx_bar wx_bar_in" style="display:none" id="topBack">
+    <div class="wx_bar_back"><a id="backUrl" href="/mobile">上儿购物</a></div>
+    <div class="wx_bar_tit"></div>
+  </div>
+<script type="text/javascript">
+
+  function $id(id){
+      return document.getElementById(id) || document.createElement('span');
+  }
+  var _iswx = navigator.userAgent.toLowerCase().indexOf('micromessenger') != -1;
+  function showTopBack(isshow){
+      if(isshow || (history.length<=1 && location.href.indexOf('hidetitle')==-1)) {
+          if(_iswx){
+             $id('topBack').style.display = '';
+             $id('backUrl').href='/mobile';
+         };
+     };
+ };
+ showTopBack(false);
+</script>
+<div class="mod_slider" id="loopImgDiv">
+  <div class="inner">
+   <%for value in 0..(@goods.big_pic.split(",").length-1)%>
+   <ul class="pic_list" id="loopImgUl" style="">
+       <li>
+          <img src="<%=@goods.big_pic.split(",")[value]%>">
+      </li>
+  </ul>
+  <%end%>
+  </div>
+  <div class="bar_wrap">
+      <ul class="bar" id="loopImgBar"><li></li></ul>
+  </div>
 </div>
+
 <script>
+
     (function(){
         var wli = $id('loopImgUl').getElementsByTagName('li'), wb = document.body.clientWidth;
         $id('loopImgUl').style.left=(wb-wli[0].offsetWidth)/2 + 'px';
@@ -57,19 +60,19 @@
 <%=form_for :product,:url=>add_cart_index_path, :html => {:id => 'add_product_to_cart'} do |f|%>
 <%=f.hidden_field :goods_id,:value=>@goods.goods_id%>
 <%=f.hidden_field :type_id,:value=>@goods.type_id%>
-<input type="hidden" name="platform" value="new_mobile">
+<input type="hidden" name="platform" value="new_mobile"/>
 <div class="buy_area">
     <div class="fn_wrap">
         <h1 class="fn" id="itemName"><%=@goods.name%></h1>
         <div class="desc" id="itemDesc">
 
           <%=raw @goods.desc.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @goods.desc%>
-      </div>
+        </div>
 
       <div class="book_desc" id="actTitleDesc" style="display:none"></div>
-  </div>
+</div>
 
-  <div class="price_wrap" id="priceBlock">
+<div class="price_wrap" id="priceBlock">
     <span class="tit" id="priceTitle">优惠价：</span>
     <span class="price price-sale" id="priceSale"><%=@goods.price%></span>
     <span class="tit" id="priceTitle">市场价：</span>
@@ -92,6 +95,7 @@
     </div>
     <i class="icon_promote" id="postIco"></i>
 </div>
+
 <!-- 促销 -->
 <div class="detail_promote detail_promote_tag" style="display: none" id="promoteDiv" hashval="promotions">
     <div class="tit">促销：</div>
@@ -99,33 +103,65 @@
     <div class="promote_tag" id="promote"></div>
     <i class="icon_promote"></i>
 </div>
+
 <div class="sku_container sku_container_on" id="skuCont">
-    <div class="sku_wrap">
-        <div id="propertyDiv">
-           <span class="spec-name">规格 : </span>
-           <%=hidden_field_tag "product[specs][]",@goods.good_specs.first.spec_value_id%>
+<div class="sku_wrap">
+    <div id="propertyDiv">
+       <span class="spec-name">规格 : </span>
+       <%=hidden_field_tag "product[specs][]",@goods.good_specs.first.spec_value_id%>
 
-           <ul class="spec-values clearfix">
-             <%@goods.good_specs.each do |spec,index|%>
+       <ul class="spec-values clearfix">
+         <%@goods.good_specs.each do |spec,index|%>
 
-             <li>
-               <%=link_to spec.spec_value.spec_value, "javascript:;", :onclick => 'change_price(this)',
-                :class=>"spec-value text", :id => "spec-value-#{index}",
-                :data=>{:value=>spec.spec_value_id,:price=>spec.product.price,:mktprice=>spec.product.mktprice},:title=>spec.spec_value_id%>
-           </li>
-           <%end%>
-       </ul>
-   </div>
-   <script language="javascript">
+         <li >
+           <%=link_to spec.spec_value.spec_value, "javascript:;", :onclick => 'change_price(this)',
+            :class=>"spec-value text", :id => "spec-value-#{index}",
+            :data=>{:value=>spec.spec_value_id,:price=>spec.product.price,:mktprice=>spec.product.mktprice},:title=>spec.spec_value_id%>
+          </li>
+        <%end%>
+        </ul>
+    </div>
 
 
-   function change_price(obj){
 
-    $('#priceSale').text($(obj).data('price'));
-    $('#priceMarket').text($(obj).data('mktprice'));
-    $('#product_specs_').val($(obj).data('value'));
+   <div class="sku sku_num" id="skuNum">
+    <h3>数量</h3>
+    <div class="num_wrap">
+        <span class="minus minus_disabled" id="minus" ptag="7001.1.11" onclick="remov()"></span>
+        <input class="num" id="buyNum" type="tel" value="1" name="product[quantity]"   onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
+        <span class="plus" id="plus" ptag="7001.1.11" onclick="add()"></span>
+          <p hidden>  <input class="store" id="store" style="" value="<%=@goods.store.to_i%>" /></p>
+    </div>
+</div>
+</div>
+</div>
+<script language="javascript">
 
-   }
+alert(3)
+
+
+ function change_price(obj){
+
+  $('#priceSale').text($(obj).data('price'));
+  $('#priceMarket').text($(obj).data('mktprice'));
+  $('#product_specs_').val($(obj).data('value'));
+
+ }
+
+$(function(){
+  $(".spec-values li ").click(function(){
+      if(!!$(this).hasClass("selected")){
+        $(this).removeClass("selected");
+    
+      }else{
+        $(this).addClass("selected").siblings("li").removeClass("selected");
+     
+      }
+  })
+ })
+
+
+
 
      function add() {
     var obj = document.getElementById("buyNum");
@@ -149,17 +185,7 @@ var store = document.getElementById("store");
   }
 
 </script>
-<div class="sku sku_num" id="skuNum">
-    <h3>数量</h3>
-    <div class="num_wrap">
-        <span class="minus minus_disabled" id="minus" ptag="7001.1.11" onclick="remov()"></span>
-        <input class="num" id="buyNum" type="tel" value="1" name="product[quantity]"   onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
-        <span class="plus" id="plus" ptag="7001.1.11" onclick="add()"></span>
-          <p hidden>  <input class="store" id="store" style="" value="<%=@goods.store.to_i%>"></span></p>
-    </div>
-</div>
-</div>
-</div>
+
 <div class="sku_tip" id="skuNotice" style="display:none">
     <span id="skuTitle2"></span>
 </div>
@@ -342,7 +368,7 @@ var store = document.getElementById("store");
            </div>
        </div>
    </div>
-</div>
+
 
 <!-- btn_wrap_nocart -->
 <div class="btn_wrap btn_wrap_fixed" id="btnTools">
@@ -364,7 +390,7 @@ var store = document.getElementById("store");
     </a>-->
 </div>
 
-<%end%>
+<!-- <%end%>
 
 
 </div>
@@ -397,7 +423,8 @@ var store = document.getElementById("store");
         <a href="javascript:;" id="goTop" ptag="7001.1.2" style="display:none;" class="goTopBtn btn_top btn_top_active">返回顶部</a>
     </div>
     <div class="detail_row detail_cmt">
-       <div class="mod_fix_wrap"><div id="evalHead" class="mod_fix fixed"></div></div>
+       <div class="mod_fix_wrap"><div id="evalHead" class="mod_fix fixed"></div>
+    </div>
        <div id="evalHead2"></div>
 
        <!-- cmt_view -->
@@ -409,10 +436,10 @@ var store = document.getElementById("store");
             <span class="tip" style="display: none;">加载更多</span>
             <div class="wx_loading2" id="eveaLoading"><i class="wx_loading_icon"></i></div>
         </div>
-    </div>
+     </div>
     <!-- list -->
-    <div id="appdlCon2"></div>
-</div>
+     <div id="appdlCon2"></div>
+    </div>
 </div>
 <!--part_summary end-->
 
@@ -496,6 +523,7 @@ var store = document.getElementById("store");
         </div>
     </div>
 </script>
+
 <script type="text/html" id="serviceTpl">
     <li>
         <i class="icon_service {#iconCode#}"></i>
@@ -515,10 +543,12 @@ var store = document.getElementById("store");
     </div>
 </script>
 <script type="text/html" id="ybServiceTpl2">
+
     <div class="op_item" pid="{#platformPid#}" psortid="{#pSortId#}" sortname="{#sortName#}" price="{#price#}">
         <div class="checkbox"><i class="icon_check"></i></div>
         <div class="name">{#sortName#}<span class="price">&yen;{#price#}</span></div>
     </div>
+
 </script>
 
 
