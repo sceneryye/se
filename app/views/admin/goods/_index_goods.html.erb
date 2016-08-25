@@ -13,10 +13,10 @@
           <th class="order" data-field="cost" data-sorter="asc">进货价</th>
       <%end%>
       <%if current_admin.has_right_of("orders","delivery")%>
-          <th class="order" data-field="bulk" data-sorter="asc">渠道价</th>
-          <th class="order" data-field="promotion" data-sorter="asc">渠道零售价</th>
+          <th class="order" data-field="bulk" data-sorter="asc" style="display:none">渠道价</th>
+          <th class="order" data-field="promotion" data-sorter="asc" style="display:none">渠道零售价</th>
       <%end%>
-        <th class="order" data-field="wholesale" data-sorter="asc">批发价</th>
+        <th class="order" data-field="wholesale" data-sorter="asc" style="display:none">批发价</th>
 		<th class="order" data-field="price" data-sorter="asc">会员价</th>
         <th class="order" data-field="mktprice" data-sorter="asc">市场价</th>
       <%if current_admin.has_right_of("members","index")%>
@@ -61,10 +61,10 @@
               <td>&yen;<%=format("%.2f",good.cost)%></td>
           <%end%>
           <%if current_admin.has_right_of("orders","delivery")%>
-              <td>&yen;<%=format("%.2f",good.bulk) if good.bulk%></td>
-              <td>&yen;<%=format("%.2f",good.promotion) if good.promotion%></td>
+              <td style="display:none">&yen;<%=format("%.2f",good.bulk) if good.bulk%></td>
+              <td style="display:none">&yen;<%=format("%.2f",good.promotion) if good.promotion%></td>
           <%end%>
-            <td>&yen;<%=format("%.2f",good.wholesale) if good.wholesale%></td>
+            <td style="display:none">&yen;<%=format("%.2f",good.wholesale) if good.wholesale%></td>
 			<td>&yen;<%=format("%.2f",good.price) if good.price%></td>
             <td>&yen;<%=format("%.2f",good.mktprice) if good.mktprice%></td>
           <%if current_admin.has_right_of("members","index")%>
