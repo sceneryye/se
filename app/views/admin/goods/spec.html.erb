@@ -75,14 +75,15 @@
 			<th>货号</th>
 			<th>库存</th>
       <th>进货价</th>
-      <th>渠道价</th>
-      <th>批发价</th>
        <th>会员价</th>
 			<th>市场价</th>
-			<th>重量</th>
+			<th>图片</th>
 			<!--<th>货位</th> -->
 		</tr>
 		</thead>
+		<style>
+			.input-mini{width:80px;}
+		</style>
 		<tbody>
 			<%@products.each do |product|%>
 				<%=f.fields_for :products, product do |p|%>
@@ -91,19 +92,14 @@
 						<%=p.check_box :marketable,{:checked=>product.marketable=='true'},'true','false'%>
 						<%=p.hidden_field :product_id,:value=>product.product_id%>
 					</td>
-                  <td>
-										<%#=f.select :cat_id, Ecstore::Category.all.collect {|cat| [cat.full_path_name, cat.cat_id] },{:include_blank=>"请选择"},{:class=>"form-control span3", :style => 'margin-left:0;'} %>
-
-										<%=product.spec_values.first.spec_value%></td>
-                    <td><%=p.text_field :barcode,:value=>product.barcode,:class=>"span2"%></td>
-					<td><%=p.text_field :bn,:value=>product.bn,:class=>"span2",:data=>{:login_name=>'231'}%></td>
+            <td><%=product.spec_values.first.spec_value%></td>
+              <td><%=p.text_field :barcode,:value=>product.barcode,:class=>"input-mini"%></td>
+					<td><%=p.text_field :bn,:value=>product.bn,:class=>"input-mini"%></td>
 					<td><%=p.number_field :store,:value=>product.store,:class=>"input-mini"%></td>
-                  <td><%=p.number_field :cost,:value=>product.cost,:class=>"input-mini"%></td>
-                  <td><%=p.number_field :bulk,:value=>product.bulk,:class=>"input-mini"%></td>
-                  <td><%=p.number_field :wholesale,:value=>product.wholesale,:class=>"input-mini"%></td>
+      		<td><%=p.number_field :cost,:value=>product.cost,:class=>"input-mini"%></td>
 					<td><%=p.number_field :price,:value=>product.price,:class=>"input-mini"%></td>
 					<td><%=p.number_field :mktprice,:value=>product.mktprice,:class=>"input-mini"%></td>
-					<td><%=p.number_field :weight,:value=>product.weight,:class=>"input-mini"%></td>
+					<td><%=p.text_field :big_pic,:value=>product.big_pic,style:'width:200px'%></td>
                   <!-- <td><%=product.store_place%></td> -->
 				</tr>
 				<%end%>
