@@ -132,6 +132,7 @@ module Admin
                         @product = Ecstore::Product.new
                         @product.bn = bn
                     end
+                    @product.big_pic = row[3]
                     @product.barcode = row[5]
                     @product.goods_id = @good.goods_id
                     @product.name = row[6]
@@ -582,7 +583,7 @@ module Admin
             end
       end
 
-      
+
 
       def collocation
         @good = Ecstore::Good.find(params[:id])
