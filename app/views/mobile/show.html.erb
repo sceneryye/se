@@ -35,10 +35,11 @@
  };
  showTopBack(false);
 </script>
+
 <div class="mod_slider" id="loopImgDiv">
   <div class="inner">
    <%for value in 0..(@goods.big_pic.split(",").length-1)%>
-   <ul class="pic_list" id="loopImgUl" style="">
+   <ul class="pic_list active" id="loopImgUl" style="">
        <li>
           <img src="<%=@goods.big_pic.split(",")[value]%>">
       </li>
@@ -111,7 +112,7 @@
        <%=hidden_field_tag "product[specs][]",@goods.good_specs.first.spec_value_id%>
 
        <ul class="spec-values clearfix">
-         <%@goods.good_specs.each do |spec,index|%>
+         <%@goods.good_specs.each  do |spec,index|%>
 
          <li >
            <%=link_to spec.spec_value.spec_value, "javascript:;", :onclick => 'change_price(this)',
@@ -143,6 +144,10 @@
   $('#priceSale').text($(obj).data('price'));
   $('#priceMarket').text($(obj).data('mktprice'));
   $('#product_specs_').val($(obj).data('value'));
+  var index=$(obj).index();
+
+  $('.pic_list').removeClass('active');
+  $('.pic_list').eq(index).addClass('active');
 
  }
 

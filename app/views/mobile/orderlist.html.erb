@@ -32,7 +32,7 @@
           <li class="order_list">
             <%unless @supplier_id=="98" %>
             <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.good%><%end%>
-            <span style="font-size: 14px"><%=order_item.good.name if order_item.good%></span></li>
+            <a href="/orders/mobile_show_order?id=<%=order.order_id%>&supplier_id=<%=@supplier_id%>" target="_blank"><span style="font-size: 14px"><%=order_item.good.name if order_item.good%></span></a></li>
             <%end%>
           </ul>
         </div>
