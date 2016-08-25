@@ -111,7 +111,7 @@
         <ul class="new-mu_l2w">
           <%#@cat_goods=Ecstore::Good.where(:cat_id=>params[:id]).order("goods_id DESC")%>
           <%@goods.each do |good|%>
-          <li class="new-mu_l2"style="clear:both;padding-bottom:15px;margin-bottom:15px;">
+          <li class="new-mu_l2" style="clear:both;padding-bottom:15px;margin-bottom:15px;">
             <a href="/mobile/<%=good.goods_id%>" class="new-mu_l2a">
               <span class="new-mu_tmb"><img src="<%=good.medium_pic%>" width="25%" /></span>
               <span class="new-mu_l2cw" style="float:right;width:65%;">
