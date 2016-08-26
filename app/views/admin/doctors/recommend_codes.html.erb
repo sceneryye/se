@@ -1,0 +1,62 @@
+
+<style>
+.qr table {
+  border-width: 0;
+  border-style: none;
+  border-color: #0000ff;
+  border-collapse: collapse;
+}
+
+.qr td {
+  border-left: solid 5px #000;
+  padding: 0;
+  margin: 0;
+  width: 0px;
+  height: 5px;
+}
+
+.qr td.black { border-color: #000; }
+.qr td.white { border-color: #fff; }
+</style>
+<h1>推荐码管理</h1>
+
+<%=link_to  '生成二维码',new_admin_doctor_path%>
+<table class="table table-bordered table-striped table-hover">
+<thead>
+<tr>
+<th><input type="checkbox" id="select_page_all"></th>
+  <th>推荐码</th>
+  <th>二维码</th>
+  <th>医生</th>
+  <th>生成时间</th>
+  <th>绑定时间</th>
+  <th>操作</th>
+</tr>
+</thead>
+<tbody>
+<%@recommend_codes.each do |code|%>
+<%@qr = RQRCode::QRCode.new( "http://www.scnc-sh.com/mobile?code=#{code.code}", :size => 6, :level => :h )%>
+
+
+<tr>
+<td><%=check_box_tag "batch[code_id][]", code.id, false, :id=>"code_#{code.id}"%></td>
+  <td><%=code.code%></td>
+  <td class='qr'><%= raw @qr.as_html %>
+    <!-- <a href='/images/doctor_codes/<%=code.code%>.png' target='_blank'><img src='/images/doctor_codes/<%=code.code%>.png' style='width:60px'></a> -->
+  </td>
+
+  <td><%=code.user.name if code.member_id%></td>
+  <td><%=code.created_at.strftime('%Y-%m-%d %H:%M')%></td>
+  <td><%=code.updated_at.strftime('%Y-%m-%d %H:%M') if code.member_id%></td>
+  <td>
+    <%#=link_to "编辑",edit_admin_doctor_path(user)%>
+  </td>
+</tr>
+<%end if @recommend_codes%>
+</tbody>
+</table>
+
+<div class="pagination">
+ <%=will_paginate @users,:container=>false if @users%>
+</div>
+</div>

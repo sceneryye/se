@@ -26,6 +26,7 @@ class MobileController < ApplicationController
     if ! points.first.nil?
       @total_points = points.first.points
     end
+    @qr = RQRCode::QRCode.new( "http://www.scnc-sh.com/mobile?code=#{@owner.code}", :size => 6, :level => :h )
     render layout: 'fykzx'
   end
 

@@ -11,6 +11,7 @@ gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 gem 'bootstrap-will_paginate'
 
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'mysql2'
@@ -19,7 +20,10 @@ gem 'hashie'
 gem 'faraday'
 gem "geocoder"
 gem 'spreadsheet'
-
+gem 'rqrcode'
+gem 'qrcoder'
+gem 'rqrcode-rails3'
+gem 'mini_magick'
 #gem 'weibo_2' #,:git=>"https://github.com/simsicon/weibo_2.git"
 # Gems used only for assets and not required
 # in production environments by default.
@@ -50,7 +54,7 @@ gem 'ya2yaml'
 gem 'whenever', :require=>false
 
 
-# gem 'rack-mini-profiler' 
+# gem 'rack-mini-profiler'
 
 #gem 'rjb'
 

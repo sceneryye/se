@@ -8,6 +8,8 @@ class Ecstore::User < Ecstore::Base
                             :interests,:voc, :job, :income, :height, :weight, :shoesize,:price,:places,:colors,:edu,
                             :province,:city,:district,:login_count,:sms_validate,:email_validate,:custom_values,:sent_sms_at,:wechat_num,:user_desc,:code
   self.accessible_all_columns
+
+  has_one :recommend_code, :foreign_key=>"member_id"
   has_many :users, :foreign_key=>"belongs_to"
   belongs_to :user,  :foreign_key=>"belongs_to"
 

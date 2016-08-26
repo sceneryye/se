@@ -425,7 +425,7 @@ get 'foodies/go_to_foodie_from_share' => 'foodies#go_to_foodie_from_share'
 
   namespace :admin do
     resources :doctors do
-
+      get :recommend_codes, :on=>:collection
     end
 
     resources :weihuos do

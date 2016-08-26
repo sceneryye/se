@@ -31,12 +31,11 @@ location.href = auto_login_url;
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<title>贸威优品商城-商品详情</title>
+<title>上海儿童营养商城-商品详情</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="x-dns-prefetch-control" content="on">
-<link rel="dns-prefetch" href="http://wq.360buyimg.com/">
 
 <link rel="stylesheet" href="/new_mobile/css/base.s.min.css">
 <link rel="stylesheet" href="/new_mobile/css/mod_nav_head.s.min.css">
@@ -44,6 +43,7 @@ location.href = auto_login_url;
 <link rel="stylesheet" href="/new_mobile/css/mod_bar_download.s.min.css">
 <link rel="stylesheet" href="/new_mobile/css/area_select.s.min.css">
 <link rel="stylesheet" href="/new_mobile/css/detail.s.min.css?t=1435217816">
+<link href="/fykzx/home.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -275,25 +275,24 @@ location.href = auto_login_url;
 <script type="text/javascript">
 $(function(){
   $(".mod_tab span").click(function(){
-      if(!!$(this).hasClass("selected")){
-        $(this).removeClass("selected");
+      if(!!$(this).hasClass("cur")){
+        $(this).removeClass("cur");
 
       }else{
-        $(this).addClass("selected").siblings("span").removeClass("selected");
+        $(this).addClass("cur").siblings("span").removeClass("cur");
 
       }
-      if ($(this).hasClass("product-intro"){
-        $('#detail_info_wrap1').removeClass("hidden");
+      if ($(this).hasClass("product-intro")){
+        $('#detailCont1').removeClass("hidden");
         $('#after_sale').addClass("hidden");
 
       }
 
-      if ($(this).hasClass("after-sale"){
-        $('#detail_info_wrap1').addClass("hidden");
+      if ($(this).hasClass("after-sale")){
+        $('#detailCont1').addClass("hidden");
         $('#after_sale').removeClass("hidden");
 
       }
-
   })
  })
   //  $(document).ready(function(){
@@ -323,23 +322,22 @@ $(function(){
             <div class="detail_list1" id="detailCont1">
                 <!-- 商品介绍 -->
                 <div class="detail_item1 p_desc1" id="detail11" style="position:static;width:100%">
-
                     <div id="commDesc1" class="detail_pc1 col-xs-12" style="width:100%" >
                         <%=raw @goods.intro.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @goods.intro%>
                     </div>
                 </div>
-       </div>
-       <!-- 评论 -->
-       <div class="detail_item p_cmt hidden" id="after_sale">
-           <div>
-               <div class="mod_tit_line"><h3>售后报障</h3></div>
-               我司承诺本店销售的所有产品均为原厂正品，非质量问题的退换货，请确保外包装完整且防伪码未被刮开（不影响二次销售）。
+           </div>
+           <!-- 评论 -->
+           <div class="detail_item p_cmt hidden" id="after_sale">
+               <div>
+                   <div class="mod_tit_line"><h3>售后报障</h3></div>
+                   我司承诺本店销售的所有产品均为原厂正品，非质量问题的退换货，请确保外包装完整且防伪码未被刮开（不影响二次销售）。
 
+               </div>
            </div>
        </div>
-   </div>
-</div>
-<%end%>
+    </div>
+  <%end%>
 
 
 </div>

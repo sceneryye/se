@@ -36,7 +36,11 @@
     <div class="control-group">
       <%= f.label :doctor_code, "推荐码：", :class => "control-label" %>
       <div class="controls">
-        <%=f.select :code, {"425245"=>"425245","462366"=>"brand","627346"=>"627346","325712"=>"325712" },{:include_blank=>"请选择"}%>
+        <%if @user.code.present? %>
+          <%=@user.code%>
+        <%else%>
+          <%=f.text_field :code, value: @code%>
+        <%end%>
       </div>
     </div>
 <%end%>
