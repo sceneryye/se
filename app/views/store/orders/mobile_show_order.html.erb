@@ -43,6 +43,29 @@
     <div class="back"><%= link_to "回到首页", "/weihuo/shops/#{params[:shop_id]}" %></div>
     <% end %>
   </div>
+
+  <% if  @order.deliveries.count>0%>
+  <div class="">
+    <span class="span"> &nbsp; &nbsp;物流情况：</span>     <span style="float: right">  已发货&nbsp; &nbsp;    </span>
+  </div>
+    <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+    <% @order.deliveries.each do |delivery| %>
+      <div class="">
+        <span class="span"> &nbsp; &nbsp;<%= I18n.t "delivery_company"%>：</span>     <span style="float: right">   <%=delivery.logi_name%> &nbsp; &nbsp;    </span>
+      </div>
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+      <div class="">
+        <span class="span"> &nbsp; &nbsp;<%= I18n.t "tracking_num"%>：</span>     <span style="float: right">   <%= delivery.logi_no%> &nbsp; &nbsp;    </span>
+      </div>
+        <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+    <% end %>
+  <%else%>
+
+  <div class="">
+    <span class="span"> &nbsp; &nbsp;物流情况：</span>     <span style="float: right">  出库中 &nbsp; &nbsp;    </span>
+  </div>
+    <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+  <%end%>
   <%@order.order_items.each do |order_item|%>
   <div id="demo-view" style="text-align: center; overflow: hidden;" data-backend-compiled="">
     <%if order_item.good ||order_item.product%>
@@ -62,34 +85,14 @@
     <div class="">
       <span class="span"> &nbsp; &nbsp;<%= I18n.t "product_amount"%>：</span>     <span style="float: right">   <%=order_item.nums.to_i%>个 &nbsp; &nbsp;    </span>
     </div>
-    <% if @delivery%>
-    <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
-    <div class="">
-      <span class="span"> &nbsp; &nbsp;<%= I18n.t "delivery_company"%>：</span>     <span style="float: right">   <%=@delivery.logi_name%> &nbsp; &nbsp;    </span>
-    </div>
-    <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
-    <div class="">
-      <span class="span"> &nbsp; &nbsp;<%= I18n.t "tracking_num"%>：</span>     <span style="float: right">   <%=@delivery.delivery_id%> &nbsp; &nbsp;    </span>
-    </div>
-    <%end%>
-
-
 
     <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
 
 
     <div class="">
       <span class="span"> &nbsp; &nbsp;
-        <%if order_item.ref_id.nil? %>
         <%= I18n.t "order_total_price"%>：
-        <%else%>
-        <%unless order_item.ecstore_goods_promotion_ref.persons-1<order_item.nums%>
-        <%= I18n.t "order_total_price"%>：
-        <%else%>
-        团购价
-        <%end%>
 
-        <%end%>
       </span>       <span style="float: right">    &yen; <%= format('%.2f',order_item.price * order_item.nums) if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%>
       &nbsp; &nbsp;            </span>
     </div>
@@ -130,12 +133,7 @@
     <span class="span"> &nbsp; &nbsp;收货地址：</span>
     <span style="float: right" > <%=@order.ship_addr%>&nbsp; &nbsp;    </span>
     <hr data-am-widget="divider"  class="am-divider am-divider-default am-no-layout">
-    <span class="span"> &nbsp; &nbsp;运单号码：</span>
-    <% if @order.deliveries.present? %>
-    <% @order.deliveries.each do |delivery| %>
-    <span style="float: right" > <%= delivery.delivery_id %>&nbsp; &nbsp;    </span>
-    <% end %>
-    <% end %>
+
     <br/>
 
     <br/>

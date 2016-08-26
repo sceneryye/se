@@ -5,7 +5,7 @@ $(document).ready(function(){
 	$("#delivery_logi_id").change(function(){
 		$("#delivery_logi_name").val($(this).find("option:selected").text());
 	});
-  	
+
   	$("#reship_logi_id").change(function(){
   		$("#reship_logi_name").val($(this).find("option:selected").text());
   	});
@@ -69,7 +69,7 @@ $(document).ready(function(){
 
 
 
-  	
+
 
   	$("#pop_tegs").click(function(){
 		$("#tegs").modal();
@@ -124,7 +124,7 @@ $(document).ready(function(){
 		var orderIds = getOrderIds();
 		var  tegs = [];
 		var tagId,checktype,state,def;
-		
+
 		$("#tegs .tri-checkbox[checktype='triplet']").each (function(){
 			tagId = $(this).attr("value");
 			def = $(this).attr("def");
@@ -165,7 +165,7 @@ $(document).ready(function(){
 
 		return false;
 	});
- 	
+
  	$("#batch_actions .batch").click(function(){
  		var orderIds = getOrderIds();
  		if(orderIds.length == 0){

@@ -63,13 +63,10 @@
 	<td><%=order.pay_status_text%></td>
 	<td><%=order.ship_status_text%></td>
 	<td><%=number_to_currency order.final_amount,:unit=>"&yen;",:precision=>2%></td>
-	<td><a href="#" title="<%=order.recommend_user%>"><%=number_to_currency order.share_for_promotion,:unit=>"&yen;",:precision=>2 if order.desktop_user_id || order.recommend_user%></a></td>
-	<td><a href="#" title="<%=order.shop_id%>"><%=number_to_currency order.share_for_employee,:unit=>"&yen;",:precision=>2 if order.shop_id%></a></td>
-	<td><%=number_to_currency order.cost_freight,:unit=>"&yen;",:precision=>2%></td>
+	<td><%=number_to_currency order.share_for_promotion,:unit=>"&yen;",:precision=>2%></td>
 	<td><%=order.ship_name%></td>
 	<td><%=order.ship_addr%></td>
 	<td><%=order.ship_mobile%></td>
-	<!-- <td><%=order.shop_id%></td> -->
 	<td><%=order.member.name if order.promotion_id%></td>
 </tr>
 <% if @total_commission.present? && @total.present? %>

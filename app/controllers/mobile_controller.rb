@@ -290,10 +290,11 @@ class MobileController < ApplicationController
     @goods = @goods.includes(:brand).paginate(:per_page=>per_page,:page=>page)
   end
 
-  def brand
-    brand_id = (params[:brand_id] || 190).to_i
-    @brand = Ecstore::Brand.where(:brand_id => brand_id).first
-    @goods = Ecstore::Good.where(:brand_id => brand_id).order('name')
+  def cates
+    @star_goods =  Ecstore::Good.where("goods_id in (1,2,8)")
+    cate_id = (params[:id] || 490).to_i
+    @cate = Ecstore::Category.where(:cat_id =>cate_id).first
+    @goods =  @cate.all_goods
 
   end
 end

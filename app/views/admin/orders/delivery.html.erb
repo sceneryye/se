@@ -84,21 +84,6 @@
           </div>
       </div>
 
-        <div class="controls" style="display:none">
-          <select id="province" name="delivery[province]">
-            <option value="21" selected="selected">上海</option>
-          </select>
-          <select class="am-input-group-label" id="city" name="delivery[city]">
-            <option value="1" selected="selected">上海</option>
-          </select>
-          <select id="district" name="delivery[district]" onchange="selectDistrict(this);">
-            <option value="1" selected="selected">静安区</option>
-          </select>
-          <%=f.hidden_field :logi_id,:value=>"-1"%>
-          <%=f.hidden_field :logi_name%>
-          <%=f.number_field :money,:value=>0,:class=>"input-small"%>
-          <%=f.radio_button :is_protect,'false',:checked=>true%>
-        </div>
          <%if @order.from_addr%>
         <div class="control-group">
             <label class="control-label">寄货人:</label>

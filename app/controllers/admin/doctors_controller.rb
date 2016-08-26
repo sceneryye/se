@@ -29,12 +29,12 @@ class Admin::DoctorsController < Admin::BaseController
 
 	def new
 
-    # (1..100).each do |i|
+    (1..10).each do |i|
       @code= Ecstore::RecommendCode.new do |code|
         code.code = random_string(10).to_s
       end
       @code.save!
-    # end
+    end
 		# qrcode = RQRCode::QRCode.new("http://www.scnc-sh.com/mobile?code=#{@code.code}")
 		# # With default options specified explicitly
 		# png = qrcode.as_png(

@@ -240,7 +240,6 @@ class Admin::OrdersController < Admin::BaseController
 
 	def delivery
 
-
 		@order = Ecstore::Order.find_by_order_id(params[:id])
 		@delivery = Ecstore::Delivery.new do |delivery|
 			delivery.ship_name = @order.ship_name
@@ -253,6 +252,7 @@ class Admin::OrdersController < Admin::BaseController
 	end
 
 	def dodelivery
+		return render text: params[:delivery]
 		@order = Ecstore::Order.find_by_order_id(params[:id])
 		if @order.ship_status == '1'
 			return render :text=>"该订单已发货 !",:layout=>"admin"

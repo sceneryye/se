@@ -62,11 +62,7 @@ zh_cn:
   login: "登陆"
   signup: "注册"
   personal_center: "个人中心"
-  sausages : "香肠"
-  hams : "火腿"
-  bacons : "培根"
   others : "其他"
-  crab : "天山大闸蟹"
   preferential-price: "吃货价"
   original-price : "原价"
   introduction : "商品介绍"
@@ -167,14 +163,3 @@ zh_cn:
         domain_name: "个性域名"
 
  ##
-
-
-
-
-
-
-
-
-
-
-

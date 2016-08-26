@@ -1,5 +1,5 @@
     <link rel="stylesheet" type="text/css" href="/assets/mobile/jd/base2013.css" charset="gbk"/>
-    <link rel="stylesheet" type="text/css" href="/assets/mobile/jd/2013/category/all_html5.css" charset="gbk"/> 
+    <link rel="stylesheet" type="text/css" href="/assets/mobile/jd/2013/category/all_html5.css" charset="gbk"/>
 
 
     <script type="text/javascript">
@@ -31,7 +31,7 @@
         _locationList.push('../ware/categoryFilter.action');
         _locationList.push('../ware/search.action');
         _locationList.push('../products/');
-        
+
         _locationList.push('../notice/');//通告模块
         _locationList.push('../coupons/');//随地惠模块
         _locationList.push('../chongzhi/');//手机充值模块
@@ -123,8 +123,9 @@
       <ul class="new-category-lst">
           <%@cats.each do |cat|%>
           <li class="new-category-li">
-              <a href="javascript:void(0)" id="1315" class="new-category-a"><span class="icon"></span><%=cat.cat_name%></a>
-              <ul class="new-category2-lst" id="category1315" style="display:none">
+              <a href="/mobile/<%=cat.cat_id%>/cates" id="1315" class="new-category-a">
+                <span class="icon"></span><%=cat.cat_name%></a>
+              <ul class="new-category2-lst" id="category1315">
                 <%@childrens = Ecstore::Category.where(:parent_id=>cat.cat_id)%>
                   <%@count = 0%>
                   <%@childrens.each_with_index do |child_cat,index|%>
@@ -132,7 +133,7 @@
                       <li class="new-category2-li" >
                     <%end%>
                       <%@count = @count + 1%>
-                       <a href='/mobile/<%=child_cat.cat_id%>/category_goods' class="new-category2-a"><span class="new-bar"></span><%=child_cat.cat_name%></a>
+                       <a href='/mobile/<%=child_cat.cat_id%>/cates' class="new-category2-a"><span class="new-bar"></span><%=child_cat.cat_name%></a>
                        <%if @childrens.count == (index+1) && @count%3 != 0%>
                         <%@append = 3 - (@count%3)%>
                         <%1.upto(@append) do |num|%>

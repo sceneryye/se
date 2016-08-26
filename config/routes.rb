@@ -76,7 +76,6 @@ get 'foodies/go_to_foodie_from_share' => 'foodies#go_to_foodie_from_share'
       get :user_center
       get :categories
       get :orderlist
-      get :brand
       get :mobile_search
 
   	end
@@ -84,6 +83,7 @@ get 'foodies/go_to_foodie_from_share' => 'foodies#go_to_foodie_from_share'
     member do
       get :shop
       get :category_goods
+      get :cates
     end
   end
 
