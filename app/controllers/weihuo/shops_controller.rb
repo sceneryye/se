@@ -373,7 +373,7 @@ def show
   end
 
   def share
-    @url = "http://www.scnc-sh.com/weihuo/shops/#{params[:shop_id]}"
+    @url = "http://mall.scnc-sh.com/weihuo/shops/#{params[:shop_id]}"
     @shop = Ecstore::WeihuoShop.where(:shop_id => params[:shop_id]).first
     if @shop.layout == 'weihuo'
       @title = '医生商城'
@@ -404,7 +404,7 @@ def show
     body = goods.name
     spbill_create_ip = '182.254.138.119'
     trade_type = 'NATIVE'
-    notify_url = 'http://www.scnc-sh.com/weihuo/notify_page'
+    notify_url = 'http://mall.scnc-sh.com/weihuo/notify_page'
     post_data_hash = {:appid => weixin_appid, :mch_id => mch_id, :nonce_str => nonce_str, :body => body, :out_trade_no => out_trade_no, :total_fee => total_fee, :spbill_create_ip => spbill_create_ip, :notify_url => notify_url, :trade_type => trade_type, :attach => attach}
     sign = create_sign post_data_hash
     post_data_hash[:sign] = sign

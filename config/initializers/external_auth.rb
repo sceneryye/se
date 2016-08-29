@@ -7,7 +7,7 @@ if Rails.env == 'development'
     config.api_site = config.site
     config.client_id = "test"
     config.client_secret =  "123456"
-    config.redirect_uri = "http://www.scnc-sh.com/auth/email139/callback"
+    config.redirect_uri = "http://mall.scnc-sh.com/auth/email139/callback"
     config.ssl = { :ca_path=>"/usr/lib/ssl/certs" }
     config.authorize_uri = config.site
     config.access_token_uri = config.site
@@ -20,7 +20,7 @@ if Rails.env == 'development'
     config.api_site = "https://open.weixin.qq.com/"
     config.client_id = "wxec23a03bf5422635"
     config.client_secret =  "b57aa686db378f60fe5e3b80b3bb412c"
-    config.redirect_uri = "http://www.scnc-sh.com/auth/weixin/callback"
+    config.redirect_uri = "http://mall.scnc-sh.com/auth/weixin/callback"
     config.ssl = { :ca_path=>"/usr/lib/ssl/certs" }
     config.authorize_uri = 'https://open.weixin.qq.com/connect/oauth2/authorize'
     config.access_token_uri = 'https://api.weixin.qq.com/sns/oauth2/access_token'
@@ -62,7 +62,7 @@ if Rails.env == 'production'
     config.api_site = config.site
     config.client_id = "test"
     config.client_secret =  "123456"
-    config.redirect_uri = "http://www.scnc-sh.com/auth/email139/callback"
+    config.redirect_uri = "http://mall.scnc-sh.com/auth/email139/callback"
     config.ssl = { :ca_path=>"/usr/lib/ssl/certs" }
     config.authorize_uri = config.site
     config.access_token_uri = config.site
@@ -75,7 +75,7 @@ if Rails.env == 'production'
     config.api_site = "https://open.weixin.qq.com/"
     config.client_id = "wxec23a03bf5422635"
     config.client_secret =  "b57aa686db378f60fe5e3b80b3bb412c"
-    config.redirect_uri = "http://www.scnc-sh.com/auth/weixin/callback"
+    config.redirect_uri = "http://mall.scnc-sh.com/auth/weixin/callback"
     config.ssl = { :ca_path=>"/usr/lib/ssl/certs" }
     config.authorize_uri = 'https://open.weixin.qq.com/connect/oauth2/authorize'
     config.access_token_uri = 'https://open.weixin.qq.com/connect/oauth2/access_token'

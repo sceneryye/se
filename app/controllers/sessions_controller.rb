@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
       scope = 'snsapi_userinfo' #snsapi_base      
     end
 
-    redirect_uri = "http%3a%2f%2fwww.scnc-sh.com%2fauth%2fweixin%2fshops#{shop_id}%2fcallback"
+    redirect_uri = "http%3a%2f%2fmall.scnc-sh.com%2fauth%2fweixin%2fshops#{shop_id}%2fcallback"
     @oauth_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=#{scope}&state=STATE#wechat_redirect"
 
     session[:shop_id] = shop_id
@@ -44,7 +44,7 @@ class SessionsController < ApplicationController
     supplier_id = 78
     @supplier = Ecstore::Supplier.find(supplier_id)
 
-    redirect_uri = "http%3a%2f%2fwww.scnc-sh.com%2fauth%2fweixin%2fshops#{shop_id}shops#{layout}%2fcallback"
+    redirect_uri = "http%3a%2f%2fmall.scnc-sh.com%2fauth%2fweixin%2fshops#{shop_id}shops#{layout}%2fcallback"
     @oauth_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
 
     session[:return_url] =  params[:return_url]
@@ -65,10 +65,10 @@ class SessionsController < ApplicationController
     @supplier = Ecstore::Supplier.find(supplier_id)
 
 
-    #redirect_uri = "http://www.scnc-sh.com/auth/weixin/callback?supplier_id=#{@supplier.id}"
+    #redirect_uri = "http://mall.scnc-sh.com/auth/weixin/callback?supplier_id=#{@supplier.id}"
     #redirect_uri= URI::escape(redirect_uri)
-    #redirect_uri="http%3a%2f%2fwww.scnc-sh.com%2fauth%2fweixin%2f#{supplier_id}%2fcallback"
-    redirect_uri = params[:return_url] || "http%3a%2f%2fwww.scnc-sh.com%2fm"
+    #redirect_uri="http%3a%2f%2fmall.scnc-sh.com%2fauth%2fweixin%2f#{supplier_id}%2fcallback"
+    redirect_uri = params[:return_url] || "http%3a%2f%2fmall.scnc-sh.com%2fm"
 
     #@oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
     @oauth2_url = "https://open.weixin.qq.com/connect/qrconnect?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect"
@@ -102,7 +102,7 @@ class SessionsController < ApplicationController
     end
     @supplier = Ecstore::Supplier.find(supplier_id)
 
-    #redirect_uri = "http://www.scnc-sh.com/auth/weixin/callback?supplier_id=#{@supplier.id}"
+    #redirect_uri = "http://mall.scnc-sh.com/auth/weixin/callback?supplier_id=#{@supplier.id}"
     #redirect_uri= URI::escape(redirect_uri)
 
     return_url = params[:return_url]
@@ -117,11 +117,11 @@ class SessionsController < ApplicationController
       scope = 'snsapi_userinfo' #snsapi_base      
     end
     
-    redirect_uri = "http%3a%2f%2fwww.scnc-sh.com%2fauth%2fweixin%2f#{supplier_id}%2fcallback"
+    redirect_uri = "http%3a%2f%2fmall.scnc-sh.com%2fauth%2fweixin%2f#{supplier_id}%2fcallback"
 
    # return render :text=>"scope:#{ params[:scope]},from:#{params[:from]},platform:#{params[:platform]},rand:#{params[:rand]}"
    # authenticate from foodiegroup, such as share and auto_login
-   redirect_uri_new = "http%3a%2f%2fwww.scnc-sh.com%2fauth%2fweixin%2f#{params[:platform]}_78%2fcallback"
+   redirect_uri_new = "http%3a%2f%2fmall.scnc-sh.com%2fauth%2fweixin%2f#{params[:platform]}_78%2fcallback"
     if params[:from].present?
       redirect_uri = redirect_uri + '2?from=new'
     elsif params[:platform] == 'groupbuy'
@@ -150,9 +150,9 @@ class SessionsController < ApplicationController
     end
     @supplier = Ecstore::Supplier.find(supplier_id)
 
-    #redirect_uri = "http://www.scnc-sh.com/auth/weixin/callback?supplier_id=#{@supplier.id}"
+    #redirect_uri = "http://mall.scnc-sh.com/auth/weixin/callback?supplier_id=#{@supplier.id}"
     #redirect_uri= URI::escape(redirect_uri)
-    redirect_uri="http%3a%2f%2fwww.scnc-sh.com%2fauth%2fweixin%2f#{supplier_id}%2fcallback?return_url=#{params[:return_url]}"
+    redirect_uri="http%3a%2f%2fmall.scnc-sh.com%2fauth%2fweixin%2f#{supplier_id}%2fcallback?return_url=#{params[:return_url]}"
 
     @oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
     return_url  =params[:return_url]

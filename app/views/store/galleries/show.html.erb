@@ -7,7 +7,7 @@
   <div class="container">
     <div class="current_pos">当前位置 ：</div>
     <ul class="position-list">
-      <li><a href="http://www.scnc-sh.com">首页</a> <span class="divider" style="vertical-align:center;">/</span></li>
+      <li><a href="http://mall.scnc-sh.com">首页</a> <span class="divider" style="vertical-align:center;">/</span></li>
       <li><a href="/galleries/<%= params[:id] %>" class="<%= 'active' unless params[:cat_id].present? %>"><%= @gallery.tag_name %></a></li>
       <% if params[:cat_id].present? %>
       <li><span class="divider">/</span><span class="active"><%= Ecstore::Category.where(:cat_id => params[:cat_id]).first.cat_name %></span></li>

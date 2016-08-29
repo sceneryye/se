@@ -35,7 +35,7 @@ class Admin::DoctorsController < Admin::BaseController
       end
       @code.save!
     end
-		# qrcode = RQRCode::QRCode.new("http://www.scnc-sh.com/mobile?code=#{@code.code}")
+		# qrcode = RQRCode::QRCode.new("http://mall.scnc-sh.com/mobile?code=#{@code.code}")
 		# # With default options specified explicitly
 		# png = qrcode.as_png(
 		#           resize_gte_to: false,
@@ -49,7 +49,7 @@ class Admin::DoctorsController < Admin::BaseController
 		#           )
 		# IO.write("/root/web/scnc_files/images/doctor_codes/#{@code.code}.png", png.to_s)
 
-		# QRCode.image("http://www.scnc-sh.com/mobile?code=#{@code.code}", "/root/scnc_files/images/doctor_codes/", :format => :png, :filename => @code.code , :unit => 12)
+		# QRCode.image("http://mall.scnc-sh.com/mobile?code=#{@code.code}", "/root/scnc_files/images/doctor_codes/", :format => :png, :filename => @code.code , :unit => 12)
     redirect_to recommend_codes_admin_doctors_url
 
   end

@@ -43,33 +43,33 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title="自动登录测试"
         desc =""
         pic_url=""
-        link_url="http://www.scnc-sh.com/autologin1?id=#{id}"
+        link_url="http://mall.scnc-sh.com/autologin1?id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
 
       when '我要开店'
         title="我的微店"
         desc=""
-        pic_url="http://www.scnc-sh.com/images/a078/homepage/zimaoqu.jpg"
-        link_url="http://www.scnc-sh.com/shop/shopinfos"
+        pic_url="http://mall.scnc-sh.com/images/a078/homepage/zimaoqu.jpg"
+        link_url="http://mall.scnc-sh.com/shop/shopinfos"
         articles = [generate_article(title, desc, pic_url, link_url)]
       when '我是医生'
         title="您好！点击下面连接，填写您的个人信息"
         desc=""
-        pic_url="http://www.scnc-sh.com/assets/doctors_banner.jpg"
-        link_url="http://www.scnc-sh.com/users/2/edit"
+        pic_url="http://mall.scnc-sh.com/assets/doctors_banner.jpg"
+        link_url="http://mall.scnc-sh.com/users/2/edit"
         articles = [generate_article(title, desc, pic_url, link_url)]
       when '我是代表'
         title="您好！点击下面连接，填写您的个人信息"
         desc=""
-        pic_url="http://www.scnc-sh.com/assets/sales_banner.jpg"
-        link_url="http://www.scnc-sh.com/users/3/edit"
+        pic_url="http://mall.scnc-sh.com/assets/sales_banner.jpg"
+        link_url="http://mall.scnc-sh.com/users/3/edit"
         articles = [generate_article(title, desc, pic_url, link_url)]
 
       when '测试'
         title="[测试商品]-----------------"
         desc ="测试商品0.01元，佣金3.00元"
-        pic_url="http://www.scnc-sh.com/images/a072/a0729002_b_1.jpg"
-        link_url="http://www.scnc-sh.com/mproducts?id=a980000&fp=mproducts&supplier_id=#{id}&from=weixin&wechatuser=#{user}"
+        pic_url="http://mall.scnc-sh.com/images/a072/a0729002_b_1.jpg"
+        link_url="http://mall.scnc-sh.com/mproducts?id=a980000&fp=mproducts&supplier_id=#{id}&from=weixin&wechatuser=#{user}"
         articles = [generate_article(title, desc, pic_url, link_url)]
 
       when 'share'
@@ -81,8 +81,8 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
         title="您的总佣金收益是: #{share}元"
         desc ="查看佣金详情请点击"
-        pic_url='http://www.scnc-sh.com/assets/vshop/commission_banner.jpg'
-        link_url="http://www.scnc-sh.com/share?FromUserName=#{user}&supplier_id=#{id}"
+        pic_url='http://mall.scnc-sh.com/assets/vshop/commission_banner.jpg'
+        link_url="http://mall.scnc-sh.com/share?FromUserName=#{user}&supplier_id=#{id}"
 
         title1="如何轻松赚佣金"
         desc1 =""
@@ -95,26 +95,26 @@ WeixinRailsMiddleware::WeixinController.class_eval do
           #  title="欢迎关注上儿营养中心"
           # # desc ="回复1:进入上儿自媒体商场 ,回复2:吃货平台活动中心"
           # desc = ""
-          # pic_url="http://www.scnc-sh.com/images/gucunsausage.jpg"
+          # pic_url="http://mall.scnc-sh.com/images/gucunsausage.jpg"
           # link_url=""
           title ="欢迎加入上儿大家庭"
           desc = "这是一个基于移动互联网的社区，宗旨是为成员推出最优性价比的儿童营养品，并享受时刻在身边的便捷服务。"
-          pic_url="http://www.scnc-sh.com/images/homepage/weho.jpg"
-          link_url = "http://www.scnc-sh.com/weihuo/shops/49"
+          pic_url="http://mall.scnc-sh.com/images/homepage/weho.jpg"
+          link_url = "http://mall.scnc-sh.com/weihuo/shops/49"
           articles = [generate_article(title, desc, pic_url, link_url)]
       when /qrscene_\d+/
         title = "仅供测试"
         desc = "My song know what you did in the dark"
-        pic_url="http://www.scnc-sh.com/images/gucunsausage5.jpg"
-        link_url = 'http://www.scnc-sh.com/topics/2015sakura?platform=mobile'
+        pic_url="http://mall.scnc-sh.com/images/gucunsausage5.jpg"
+        link_url = 'http://mall.scnc-sh.com/topics/2015sakura?platform=mobile'
         articles = [generate_article(title, desc, pic_url, link_url)]
 
       else
 
         desc =""
         title="您好，我们将尽快回复您的问题"
-        pic_url="http://www.scnc-sh.com/images/a0#{id}/homepage/logo.jpg"
-        link_url="http://www.scnc-sh.com/vshop/#{id}"
+        pic_url="http://mall.scnc-sh.com/images/a0#{id}/homepage/logo.jpg"
+        link_url="http://mall.scnc-sh.com/vshop/#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
       end
 
@@ -130,7 +130,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       message="今日成功签到，明天不要忘记哟～"
     when /^推送/
       openid = @weixin_message.FromUserName
-      url = 'http://www.scnc-sh.com/weihuo/template_information'
+      url = 'http://mall.scnc-sh.com/weihuo/template_information'
       content = @weixin_message.Content.match(/[a-zA-Z0-9]+/)
       res_data = RestClient.post url, {:openid => openid, :content => content}
       if res_data == 'success'

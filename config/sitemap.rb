@@ -2,7 +2,7 @@ require 'rubygems'
 require 'sitemap_generator'
 
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "http://www.scnc-sh.com/"
+SitemapGenerator::Sitemap.default_host = "http://mall.scnc-sh.com/"
 
 SitemapGenerator::Sitemap.create do
   # Put links creation logic here.

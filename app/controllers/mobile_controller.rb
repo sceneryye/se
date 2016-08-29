@@ -26,7 +26,7 @@ class MobileController < ApplicationController
     if ! points.first.nil?
       @total_points = points.first.points
     end
-    @qr = RQRCode::QRCode.new( "http://www.scnc-sh.com/mobile?code=#{@owner.code}", :size => 6, :level => :h )
+    @qr = RQRCode::QRCode.new( "http://mall.scnc-sh.com/mobile?code=#{@owner.code}", :size => 6, :level => :h )
     render layout: 'fykzx'
   end
 
@@ -234,10 +234,10 @@ class MobileController < ApplicationController
 
 
 
-  	  #  redirect_uri="http%3a%2f%2fwww.scnc-sh.com%2fauth%2femail139%2f#{sid}%2fcallback"
+  	  #  redirect_uri="http%3a%2f%2fmall.scnc-sh.com%2fauth%2femail139%2f#{sid}%2fcallback"
   	  #  @oauth2_url = "http://121.15.167.240:19090/SSOInterface/GetUserByKey"
 
-  	#	return_url = "http://www.scnc-sh.com/mobile/shop?sid=#{sid}"
+  	#	return_url = "http://mall.scnc-sh.com/mobile/shop?sid=#{sid}"
   	 #   return_url  = params[:return_url]
   	 #   session[:return_url] =  return_url
   	  #  redirect_to  @oauth2_url
